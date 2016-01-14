@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1) {
+System.register(['angular2/core', './projet'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,27 +8,35 @@ System.register(['angular2/core'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
-    var AppHome;
+    var core_1, projet_1;
+    var AppNouveauProjet;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (projet_1_1) {
+                projet_1 = projet_1_1;
             }],
         execute: function() {
-            AppHome = (function () {
-                function AppHome() {
+            AppNouveauProjet = (function () {
+                function AppNouveauProjet() {
+                    this.log = 'ko';
+                    this.projet = new projet_1.Projet('', '', 0, 0);
                 }
-                AppHome = __decorate([
+                AppNouveauProjet.prototype.onCreationProjet = function (nouveauProjet) {
+                    this.log = nouveauProjet.nom;
+                };
+                AppNouveauProjet = __decorate([
                     core_1.Component({
-                        template: "\n        <h2>ACCUEIL</h2>"
+                        templateUrl: 'template/app.projet.html'
                     }), 
                     __metadata('design:paramtypes', [])
-                ], AppHome);
-                return AppHome;
+                ], AppNouveauProjet);
+                return AppNouveauProjet;
             })();
-            exports_1("AppHome", AppHome);
+            exports_1("AppNouveauProjet", AppNouveauProjet);
         }
     }
 });
-//# sourceMappingURL=app.home.js.map
+//# sourceMappingURL=app.nouveauProjet.js.map

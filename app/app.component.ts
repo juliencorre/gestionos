@@ -1,9 +1,9 @@
     import {Component}	from 'angular2/core';
     import {NgForm}		from 'angular2/common';
-    import {User} 		from './user';
     import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-    import {AppHome} from './app.home';
+    import {AppProjets} from './app.projets';
     import {AppConnexion} from './app.connexion';
+    import {AppNouveauProjet} from './app.nouveauProjet';
     
     @Component({
         selector: 'my-app',
@@ -12,18 +12,11 @@
     })
     
     @RouteConfig([
-  		{path:'/accueil', name: 'Home', component: AppHome},
-  		{path:'/connexion', name: 'Connexion', component: AppConnexion},
+  		{path:'/projets', name: 'Projets', component: AppProjets},
+  		{path:'/connexion', name: 'Connexion', component: AppConnexion , useAsDefault: true},
+  		{path:'/newprojet', name: 'NouveauProjet', component: AppNouveauProjet},
 	])
     
     export class AppComponent { 
-	    data='...';
-	    user = new User('', '');
-	    
-	    onSubmit(userConnexion:User) { 
-	    	this.data='OK !';
-	    	this.data=userConnexion.mail;
-	    	this.navigate( ['Home'] );
-	    }
     
     }

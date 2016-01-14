@@ -1,109 +1,104 @@
-#bandeau
-{
-  background-color: darkgrey;
-    height: 45px;
+#bandeau {
+	background-color: darkgrey;
+	height: 45px;
 }
 
-#projet
-{
-    padding: 10px 3px 10px 10px;
-    color: #ffffff;
-    float:left;
-    font-size: 1.2em;
-}
-#version{
-    color: white;
-    text-align: left;
-    font-style: italic;
-    font-size: 0.6em;
-    padding: 5px 0px 0px 0px;
-    width: 50px;
-    float: left;
+#projet {
+	padding: 10px 3px 10px 10px;
+	color: #ffffff;
+	float: left;
+	font-size: 1.2em;
 }
 
-#profil{
-    text-align: center;
-    color:#f7f7f7;
-    font-size: 0.8em;
-    height:45px;
-    line-height: 45px;
-    vertical-align: middle;
-    width: 100px;
-    float:right;
-    margin: 0px;
-    padding: 0px;
+#version {
+	color: white;
+	text-align: left;
+	font-style: italic;
+	font-size: 0.6em;
+	padding: 5px 0px 0px 0px;
+	width: 50px;
+	float: left;
+}
+
+#profil {
+	text-align: center;
+	color: #f7f7f7;
+	font-size: 0.8em;
+	height: 45px;
+	line-height: 45px;
+	vertical-align: middle;
+	width: 100px;
+	float: right;
+	margin: 0px;
+	padding: 0px;
 }
 
 #parent {
-    height: 100%;
-    width: 100%;
-    /*background-color: mediumaquamarine;*/
+	height: 100%;
+	width: 100%;
+	/*background-color: mediumaquamarine;*/
 }
 
-#child  {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    /*background-color: #DD0000;*/
-    text-decoration: none;
-    margin: -60px 0px 0px -90px;
-    
+#child {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	/*background-color: #DD0000;*/
+	text-decoration: none;
+	margin: -60px 0px 0px -90px;
 }
 
-#form_connexion
-{
-    float: left;
-    text-align: center;
+#form_connexion {
+	float: left;
+	text-align: center;
 }
 
-input[type="submit"]{
-    margin: 10px 0px 10px 0px;
-    display: block;
-    border-style: solid;
-    border-width: thin;
-    background-color: transparent;
-    background-color: darkgrey;
-    color: white;
-    height: 25px;
+input[type="submit"] {
+	margin: 10px 0px 10px 0px;
+	display: block;
+	border-style: solid;
+	border-width: thin;
+	background-color: transparent;
+	background-color: darkgrey;
+	color: white;
+	height: 25px;
 }
 
-input[type="password"]{
-    margin: 10px 0px 10px 0px;
-    display: block;
+input[type="password"] {
+	margin: 10px 0px 10px 0px;
+	display: block;
 }
 
-input[type="email"]{
-    margin: 10px 0px 10px 0px;
-    display: block;
-
+input[type="email"] {
+	margin: 10px 0px 10px 0px;
+	display: block;
 }
 
 /* permet d'aligner la taille*/
 input, textarea, select {
- /* width : 200px;*/
-  margin: 0;
-
-  -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
-     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
-          box-sizing: border-box;
+	/* width : 200px;*/
+	margin: 0;
+	-webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+	-moz-box-sizing: border-box;
+	/* For legacy (Firefox <29) Gecko based browsers */
+	box-sizing: border-box;
 }
 
-footer
-{
-    position: absolute;
-    bottom:0px;
-    width: 100%;
-    margin:0px;
-    height: 30px;
+footer {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	margin: 0px;
+	height: 30px;
 }
 
-#copyright{
-    color: darkgrey;
-    text-align: right;
-    font-style: italic;
-    padding: 5px 10px 0px 0px;
-    border-width:1px 0px 0px 0px;
-    border-style:solid;
-    border-color:darkgrey;
-    font-size: 0.8em;
+#copyright {
+	color: darkgrey;
+	text-align: right;
+	font-style: italic;
+	padding: 5px 10px 0px 0px;
+	border-width: 1px 0px 0px 0px;
+	border-style: solid;
+	border-color: darkgrey;
+	font-size: 0.8em;
 }

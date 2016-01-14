@@ -1,4 +1,4 @@
-System.register(['angular2/core', './user'], function(exports_1) {
+System.register(['angular2/core', './user', 'angular2/router'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './user'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, user_1;
+    var core_1, user_1, router_1;
     var AppConnexion;
     return {
         setters:[
@@ -17,23 +17,27 @@ System.register(['angular2/core', './user'], function(exports_1) {
             },
             function (user_1_1) {
                 user_1 = user_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
             AppConnexion = (function () {
-                function AppConnexion() {
+                function AppConnexion(_router) {
+                    this._router = _router;
                     this.data = '...';
                     this.user = new user_1.User('', '');
                 }
                 AppConnexion.prototype.onSubmit = function (userConnexion) {
                     this.data = 'OK !';
                     this.data = userConnexion.mail;
-                    this.navigate(['Home']);
+                    this._router.navigate(['Home']);
                 };
                 AppConnexion = __decorate([
                     core_1.Component({
-                        templateUrl: 'template/app.component.html'
+                        templateUrl: 'template/app.connexion.html'
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [router_1.Router])
                 ], AppConnexion);
                 return AppConnexion;
             })();
