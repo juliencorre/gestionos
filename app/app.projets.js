@@ -27,13 +27,17 @@ System.register(['angular2/core', './projet', 'angular2/router'], function(expor
                     this._router = _router;
                     this.log = '';
                     this.projets = [
-                        new projet_1.Projet('projet1', 'client1', 50, 23),
-                        new projet_1.Projet('projet2', 'client2', 75, 53)
+                        new projet_1.Projet(1, 'projet1', 'client1', 50, 23),
+                        new projet_1.Projet(2, 'projet2', 'client2', 75, 53)
                     ];
                 }
                 AppProjets.prototype.onClick = function () {
                     this.log = 'click';
                     this._router.navigate(['NouveauProjet']);
+                };
+                AppProjets.prototype.onSelectProjet = function (projet) {
+                    this.log = projet.id.toString();
+                    this._router.navigate(['AppProjet', { id: projet.id }]);
                 };
                 AppProjets = __decorate([
                     core_1.Component({

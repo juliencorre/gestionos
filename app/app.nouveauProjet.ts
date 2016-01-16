@@ -3,7 +3,7 @@
     import {Router}		from 'angular2/router';
   	import {NgForm}		from 'angular2/common';
     import {Client} 	from './client';
-    import {Tache} 	from './tache';
+    import {Tache} 		from './tache';
             
     @Component({
       templateUrl: 'template/app.projet.html'
@@ -11,8 +11,8 @@
     
     export class AppNouveauProjet {
 
-    	log='ko';
-		projet:Projet=new Projet('','',0,0);
+    	log='';
+		projet:Projet=new Projet(0,'','',0,0);
     	clients:Client[];
     	taches:Tache[];
     	index:number=0;

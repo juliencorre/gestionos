@@ -31,8 +31,8 @@ System.register(['angular2/core', './projet', 'angular2/router', './client', './
             AppNouveauProjet = (function () {
                 function AppNouveauProjet(_router) {
                     this._router = _router;
-                    this.log = 'ko';
-                    this.projet = new projet_1.Projet('', '', 0, 0);
+                    this.log = '';
+                    this.projet = new projet_1.Projet(0, '', '', 0, 0);
                     this.index = 0;
                     this.clients = [
                         new client_1.Client(1, 'client1'),

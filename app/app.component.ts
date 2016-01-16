@@ -1,9 +1,10 @@
-    import {Component}	from 'angular2/core';
-    import {NgForm}		from 'angular2/common';
+    import {Component}						from 'angular2/core';
+    import {NgForm}							from 'angular2/common';
     import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
-    import {AppProjets} from './app.projets';
-    import {AppConnexion} from './app.connexion';
-    import {AppNouveauProjet} from './app.nouveauProjet';
+    import {AppProjets} 					from './app.projets';
+    import {AppConnexion} 					from './app.connexion';
+    import {AppNouveauProjet} 				from './app.nouveauProjet';
+    import {AppProjet} 					from './app.projet';
     
     @Component({
         selector: 'my-app',
@@ -15,6 +16,7 @@
   		{path:'/projets', name: 'Projets', component: AppProjets},
   		{path:'/connexion', name: 'Connexion', component: AppConnexion , useAsDefault: true},
   		{path:'/newprojet', name: 'NouveauProjet', component: AppNouveauProjet},
+  		{path:'/projet/:id', name: 'AppProjet',   component: AppProjet}
 	])
     
     export class AppComponent { 

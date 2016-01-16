@@ -13,14 +13,19 @@
 		  
 		constructor(private _router: Router) {
 	      this.projets = [
-		    new Projet('projet1','client1',50,23),
-		    new Projet('projet2','client2',75,53)
+		    new Projet(1,'projet1','client1',50,23),
+		    new Projet(2,'projet2','client2',75,53)
 		  ];
 	    }
 	    
 	    onClick(){
 	    	this.log='click';
 	    	this._router.navigate(['NouveauProjet'] );
+	    }
+	    
+	    onSelectProjet(projet:Projet){
+	    	this.log=projet.id.toString();
+	    	this._router.navigate( ['AppProjet', { id: projet.id }] );
 	    }
 
 	}

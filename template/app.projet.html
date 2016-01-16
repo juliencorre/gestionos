@@ -1,6 +1,6 @@
-{{diagnostic}}
+<p class="bg-info">{{log}}</p>
 <div >
-{{log}}
+
 			<form (ngSubmit)="onCreationProjet(projet)" #projetForm="ngForm" >
 					<div class="form-group">
 					    <input required [(ngModel)]="projet.nom" type="text" class="form-control" placeholder="Nom du projet">
@@ -19,7 +19,7 @@
 							<button type="button" class="close pull-left" aria-label="Close" (click)="onRemoveTache(tache)"><span aria-hidden="true">&times;</span></button>
 						</div>
 					</div>
-				  	<button type="button" class="btn btn-default" (click)="onAddTache()">Ajouter tache</button>
+				  	<button type="button" class="btn btn-link" (click)="onAddTache()">Ajouter tache</button>
 				  	<button type="submit" class="btn btn-default">Créer</button>
 				</form>
 </div>

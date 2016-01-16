@@ -1,6 +1,6 @@
-{{diagnostic}}
+<p class="bg-info">{{log}}</p>
 <div class="table-responsive">
-{{log}}
+
 	<button type="button" class="btn btn-primary btn-xs" (click)="onClick()">Add project</button>
 				<table class="table table-hover table-condensed">
 					<thead>
@@ -16,7 +16,7 @@
 					<tbody>
 						<tr *ngFor="#projet of projets">
 							<td>{{projet.client}}</td>
-							<td>{{projet.nom}}</td>
+							<td><button type="button" class="btn btn-link" (click)="onSelectProjet(projet)">{{projet.nom}}</button></td>
 							<td>{{projet.avancement}}%</td>
 							<td>{{projet.marge}}%</td>
 						</tr>

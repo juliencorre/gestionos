@@ -1,0 +1,15 @@
+<p class="bg-info">{{log}}</p>
+<div >
+
+	<p class="bg-info">{{log}}</p>
+	<div >
+		<p>Nom du projet: {{projet.nom}}</p>
+		<p>Id: {{projet.id}}</p>
+		<p>Client: {{projet.client}}</p>
+		<strong><u>TACHES</u></strong>
+		<div class="row" *ngFor="#tache of projet.taches">
+			<div class="col-md-1">id: {{tache.id}}</div>
+			<div class="col-md-3">nom: {{tache.nom}}</div>
+		</div>
+	</div>
+</div>
