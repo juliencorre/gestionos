@@ -1,0 +1,15 @@
+{ 
+	"id": 1, 
+	"nom": "kstudio", 
+	"client": "julien Corre", 
+	"avancement": 1, 
+	"marge": 0, 
+	"taches": [ 
+	            { "id": 1, "nom": "OK" }, 
+	            { "id": 2, "nom": "tache1" },
+	            { "id": 2, "nom": "tache2" },
+	            { "id": 2, "nom": "tache3" },
+	            { "id": 2, "nom": "tache4" }
+	            
+	          ] 
+}

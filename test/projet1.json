@@ -1,0 +1,11 @@
+{ 
+	"id": 1, 
+	"nom": "gestionos", 
+	"client": "arnaud attagnant", 
+	"avancement": 1, 
+	"marge": 0, 
+	"taches": [ 
+	            { "id": 1, "nom": "creation projet" }, 
+	            { "id": 2, "nom": "affichage projet" } 
+	          ] 
+}
