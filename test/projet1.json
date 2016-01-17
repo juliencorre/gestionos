@@ -1,7 +1,7 @@
 { 
 	"id": 1, 
 	"nom": "gestionos", 
-	"client": "arnaud attagnant", 
+	"client": { "id": 1, "nom": "arnaud attagnant" }, 
 	"avancement": 1, 
 	"marge": 0, 
 	"taches": [ 

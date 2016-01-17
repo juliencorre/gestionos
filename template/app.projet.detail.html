@@ -4,7 +4,7 @@
 	<div >
 		<p>Nom du projet: {{projet.nom}}</p>
 		<p>Id: {{projet.id}}</p>
-		<p>Client: {{projet.client}}</p>
+		<p>Client: {{projet.client.nom}}</p>
 		<strong><u>TACHES</u></strong>
 		<div class="row" *ngFor="#tache of projet.taches">
 			<div class="col-md-1">id: {{tache.id}}</div>

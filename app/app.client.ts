@@ -7,26 +7,25 @@
     import {HTTP_PROVIDERS, Http} from 'angular2/http';
             
     @Component({
-    	templateUrl: 'template/app.projet.detail.html',
+    	templateUrl: 'template/app.client.detail.html',
     	bindings: [HTTP_PROVIDERS]
     })
     
-    export class AppProjet {
+    export class AppClient {
 
     	log='';
-    	projet:Projet=new Projet(0,'',new Client(0,''),0,0);
+    	client:Client=new Client(0,'');
     	
-    	people: Object[];
 	   	constructor(private _router: Router,
 	   				private _routeParams:RouteParams,private _http:Http) { 
+
 				   	}
 	   	
 	    ngOnInit() {
 	        let id = this._routeParams.get('id');
 	        this.log=id;
-	        this._http.get('/test/projet'+parseInt(id)+'.json').subscribe(res => {
-		   	      
-		   	   	this.projet = res.json();
+	        this._http.get('/test/client'+parseInt(id)+'.json').subscribe(res => {
+		   	   	this.client = res.json();
 		   	    });
 	        
 	      }

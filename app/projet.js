@@ -15,6 +15,9 @@ System.register([], function(exports_1) {
                 Projet.prototype.setTaches = function (p_taches) {
                     this.taches = p_taches;
                 };
+                Projet.prototype.setClient = function (p_client) {
+                    this.client = p_client;
+                };
                 return Projet;
             })();
             exports_1("Projet", Projet);

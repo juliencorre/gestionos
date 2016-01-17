@@ -12,7 +12,7 @@
     export class AppNouveauProjet {
 
     	log='';
-		projet:Projet=new Projet(0,'','',0,0);
+		projet:Projet=null;
     	clients:Client[];
     	taches:Tache[];
     	index:number=0;

@@ -1,4 +1,4 @@
-System.register(['angular2/core', './projet', 'angular2/router'], function(exports_1) {
+System.register(['angular2/core', './projet', './client', 'angular2/router'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './projet', 'angular2/router'], function(expor
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, projet_1, router_1;
+    var core_1, projet_1, client_1, router_1;
     var AppProjets;
     return {
         setters:[
@@ -17,6 +17,9 @@ System.register(['angular2/core', './projet', 'angular2/router'], function(expor
             },
             function (projet_1_1) {
                 projet_1 = projet_1_1;
+            },
+            function (client_1_1) {
+                client_1 = client_1_1;
             },
             function (router_1_1) {
                 router_1 = router_1_1;
@@ -27,8 +30,8 @@ System.register(['angular2/core', './projet', 'angular2/router'], function(expor
                     this._router = _router;
                     this.log = '';
                     this.projets = [
-                        new projet_1.Projet(1, 'projet1', 'client1', 50, 23),
-                        new projet_1.Projet(2, 'projet2', 'client2', 75, 53)
+                        new projet_1.Projet(1, 'projet1', new client_1.Client(1, 'client1'), 50, 23),
+                        new projet_1.Projet(2, 'projet2', new client_1.Client(2, 'client2'), 75, 53)
                     ];
                 }
                 AppProjets.prototype.onClick = function () {
@@ -38,6 +41,10 @@ System.register(['angular2/core', './projet', 'angular2/router'], function(expor
                 AppProjets.prototype.onSelectProjet = function (projet) {
                     this.log = projet.id.toString();
                     this._router.navigate(['AppProjet', { id: projet.id }]);
+                };
+                AppProjets.prototype.onSelectClient = function (client) {
+                    this.log = client.id.toString();
+                    this._router.navigate(['AppClient', { id: client.id }]);
                 };
                 AppProjets = __decorate([
                     core_1.Component({
