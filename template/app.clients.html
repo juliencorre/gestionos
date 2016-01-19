@@ -1,5 +1,5 @@
 <p class="bg-info">{{log}}</p>
-
+<button type="button" class="btn btn-primary btn-xs" (click)="onClick()">Add client</button>
 						<div class="row" *ngFor="#client of clients">
 							<div class="col-md-1">{{client.id}}</div>
 							<div class="col-md-3"><button type="button" class="btn btn-link" (click)="onSelectClient(client)">{{client.nom}}</button></div>

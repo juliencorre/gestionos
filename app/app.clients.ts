@@ -14,6 +14,7 @@
     export class AppClients {
 
     	clients:Client[]=[];
+        log='';
     	
 	   	constructor(private _router: Router,private _http:Http) { 
 	   		
@@ -27,5 +28,10 @@
 	   	onSelectClient(client:Client){
 	    	this._router.navigate( ['AppClient', { id: client.id }] );
 	    }
+        
+        onClick(){
+        this.log='click';
+	    	this._router.navigate(['NouveauClient'] );
+            }
 
 	}

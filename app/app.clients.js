@@ -28,6 +28,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http'], function(
                     this._router = _router;
                     this._http = _http;
                     this.clients = [];
+                    this.log = '';
                     this._http.get('/test/clients.json').subscribe(function (res) {
                         console.log('projet', res.json());
                         _this.clients = res.json();
@@ -35,6 +36,10 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http'], function(
                 }
                 AppClients.prototype.onSelectClient = function (client) {
                     this._router.navigate(['AppClient', { id: client.id }]);
+                };
+                AppClients.prototype.onClick = function () {
+                    this.log = 'click';
+                    this._router.navigate(['NouveauClient']);
                 };
                 AppClients = __decorate([
                     core_1.Component({

@@ -6,13 +6,14 @@
     import {Tache} 		from './tache';
             
     @Component({
-      templateUrl: 'template/app.projet.html'
+      templateUrl: 'template/app.projet.html',
+      inputs: ['projet']
     })
     
     export class AppNouveauProjet {
 
     	log='';
-		projet:Projet=null;
+		projet:Projet=new Projet(0,'',new Client(0,''),0,0);
     	clients:Client[];
     	taches:Tache[];
     	index:number=0;

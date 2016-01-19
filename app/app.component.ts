@@ -7,6 +7,7 @@
     import {AppProjet} 						from './app.projet';
     import {AppClients} 					from './app.clients';
     import {AppClient} 						from './app.client';
+    import {AppNouveauClient} 				from './app.nouveauClient';
     
     @Component({
         selector: 'my-app',
@@ -21,6 +22,7 @@
   		{path:'/projet/:id', name: 'AppProjet',   component: AppProjet},
   		{path:'/clients', name: 'Clients',   component: AppClients},
   		{path:'/client/:id', name: 'AppClient',   component: AppClient},
+        {path:'/newclient', name: 'NouveauClient',   component: AppNouveauClient},
 	])
     
     export class AppComponent { 
