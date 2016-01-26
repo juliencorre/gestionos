@@ -1,7 +1,17 @@
 <p class="bg-info">{{log}}</p>
 <div >
-	<div >
+	<div *ngIf="!editable" >
+	<button class="btn btn-default" (click)="onEdit()">Modifier</button>
 		<div class="col-md-1">Id: {{client.id}}</div>
 		<div class="col-md-3">Nom du client: {{client.nom}}</div>
 	</div>
+	
+				<form *ngIf="editable"  (ngSubmit)="onEditClient(client)" #clientForm="ngForm" >
+					<div class="form-group">
+					    <input required [(ngModel)]="client.nom" type="text" class="form-control" placeholder="Nom du client">
+				  	</div>
+				  	
+				  	<button class="btn btn-default" (click)="onCancel()">Annuler</button>
+				  	<button type="submit" class="btn btn-default">Valider</button>
+				</form>
 </div>

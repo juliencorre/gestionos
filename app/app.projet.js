@@ -1,4 +1,4 @@
-System.register(['angular2/core', './projet', 'angular2/router', './client', 'angular2/http'], function(exports_1) {
+System.register(['angular2/core', './projet', 'angular2/router', './client', './tache', 'angular2/http'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './projet', 'angular2/router', './client', 'an
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, projet_1, router_1, client_1, http_1;
+    var core_1, projet_1, router_1, client_1, tache_1, http_1;
     var AppProjet;
     return {
         setters:[
@@ -24,6 +24,9 @@ System.register(['angular2/core', './projet', 'angular2/router', './client', 'an
             function (client_1_1) {
                 client_1 = client_1_1;
             },
+            function (tache_1_1) {
+                tache_1 = tache_1_1;
+            },
             function (http_1_1) {
                 http_1 = http_1_1;
             }],
@@ -35,14 +38,51 @@ System.register(['angular2/core', './projet', 'angular2/router', './client', 'an
                     this._http = _http;
                     this.log = '';
                     this.projet = new projet_1.Projet(0, '', new client_1.Client(0, ''), 0, 0);
+                    this.clients = [];
+                    this.editable = false;
                 }
                 AppProjet.prototype.ngOnInit = function () {
                     var _this = this;
                     var id = this._routeParams.get('id');
                     this.log = id;
+                    //recupere le projet
                     this._http.get('/test/projet' + parseInt(id) + '.json').subscribe(function (res) {
                         _this.projet = res.json();
                     });
+                    //recupere les clients
+                    this._http.get('/test/clients.json').subscribe(function (res) {
+                        console.log('projet', res.json());
+                        _this.clients = res.json();
+                    });
+                };
+                AppProjet.prototype.onEdit = function () {
+                    this.editable = true;
+                    this.log = "editable";
+                };
+                AppProjet.prototype.onCancel = function () {
+                    var _this = this;
+                    //recupere le projet
+                    this._http.get('/test/projet' + this.projet.id + '.json').subscribe(function (res) {
+                        _this.projet = res.json();
+                    });
+                    this.editable = false;
+                    this.log = "not editable";
+                };
+                AppProjet.prototype.onEditProjet = function (projet) {
+                    this.editable = false;
+                    this.log = "not editable";
+                };
+                AppProjet.prototype.onAddTache = function () {
+                    this.log = 'Add tache';
+                    this.projet.taches.push(new tache_1.Tache(0, ''));
+                };
+                AppProjet.prototype.onRemoveTache = function (tache) {
+                    this.log = 'Remove tache:' + tache.id;
+                    var removeIndex = this.projet.taches.indexOf(tache);
+                    if (removeIndex > -1) {
+                        this.projet.taches.splice(removeIndex, 1);
+                    }
+                    this.log = 'remove index:' + removeIndex;
                 };
                 AppProjet = __decorate([
                     core_1.Component({

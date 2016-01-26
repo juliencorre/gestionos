@@ -2,7 +2,8 @@
     import {Projet}		from './projet';
     import {Client}		from './client';
     import {Router}		from 'angular2/router';
-          
+    import {HTTP_PROVIDERS, Http} from 'angular2/http';
+    
     @Component({
       templateUrl: 'template/app.projets.html'
     })
@@ -12,11 +13,11 @@
 		projets:Projet[];
 		log='';
 		  
-		constructor(private _router: Router) {
-	      this.projets = [
-		    new Projet(1,'projet1',new Client(1,'client1'),50,23),
-		    new Projet(2,'projet2',new Client(2,'client2'),75,53)
-		  ];
+		constructor(private _router: Router,private _http:Http) {
+			
+			 this._http.get('/test/projets.json').subscribe(res => {
+			   	   	this.projets = res.json();
+			   	    });
 	    }
 	    
 	    onClick(){

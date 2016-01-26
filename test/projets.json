@@ -1,0 +1,28 @@
+[
+	{ 
+		"id": 1, 
+		"nom": "gestionos", 
+		"client": { "id": 1, "nom": "arnaud attagnant" }, 
+		"avancement": 1, 
+		"marge": 0, 
+		"taches": [ 
+		            { "id": 1, "nom": "creation projet" }, 
+		            { "id": 2, "nom": "affichage projet" } 
+		          ] 
+	},
+	{ 
+		"id": 2, 
+		"nom": "kstudio", 
+		"client": { "id": 2, "nom": "julien corre" }, 
+		"avancement": 1, 
+		"marge": 0, 
+		"taches": [ 
+		            { "id": 1, "nom": "OK" }, 
+		            { "id": 2, "nom": "tache1" },
+		            { "id": 2, "nom": "tache2" },
+		            { "id": 2, "nom": "tache3" },
+		            { "id": 2, "nom": "tache4" }
+		            
+		          ] 
+	}
+]

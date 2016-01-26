@@ -32,6 +32,7 @@ System.register(['angular2/core', 'angular2/router', './client', 'angular2/http'
                     this._http = _http;
                     this.log = '';
                     this.client = new client_1.Client(0, '');
+                    this.editable = false;
                 }
                 AppClient.prototype.ngOnInit = function () {
                     var _this = this;
@@ -40,6 +41,22 @@ System.register(['angular2/core', 'angular2/router', './client', 'angular2/http'
                     this._http.get('/test/client' + parseInt(id) + '.json').subscribe(function (res) {
                         _this.client = res.json();
                     });
+                };
+                AppClient.prototype.onEdit = function () {
+                    this.editable = true;
+                    this.log = "editable";
+                };
+                AppClient.prototype.onCancel = function () {
+                    var _this = this;
+                    this._http.get('/test/client' + this.client.id + '.json').subscribe(function (res) {
+                        _this.client = res.json();
+                    });
+                    this.editable = false;
+                    this.log = "not editable";
+                };
+                AppClient.prototype.onEditClient = function (client) {
+                    this.editable = false;
+                    this.log = "not editable";
                 };
                 AppClient = __decorate([
                     core_1.Component({

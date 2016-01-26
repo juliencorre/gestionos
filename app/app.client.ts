@@ -16,6 +16,8 @@
     	log='';
     	client:Client=new Client(0,'');
     	
+    	 editable=false;
+    	 
 	   	constructor(private _router: Router,
 	   				private _routeParams:RouteParams,private _http:Http) { 
 
@@ -29,5 +31,23 @@
 		   	    });
 	        
 	      }
+	    
+	    onEdit(){
+        	this.editable=true;
+	    	this.log="editable";
+        }
+        
+        onCancel(){
+        	this._http.get('/test/client'+this.client.id+'.json').subscribe(res => {
+		   	   	this.client = res.json();
+		   	    });
+        	this.editable=false;
+	    	this.log="not editable";
+        }
+        
+        onEditClient(client:Client){
+        	this.editable=false;
+	    	this.log="not editable";
+        }
 
 	}

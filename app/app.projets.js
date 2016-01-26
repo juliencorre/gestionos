@@ -1,4 +1,4 @@
-System.register(['angular2/core', './projet', './client', 'angular2/router'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', 'angular2/http'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,31 +8,29 @@ System.register(['angular2/core', './projet', './client', 'angular2/router'], fu
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, projet_1, client_1, router_1;
+    var core_1, router_1, http_1;
     var AppProjets;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (projet_1_1) {
-                projet_1 = projet_1_1;
-            },
-            function (client_1_1) {
-                client_1 = client_1_1;
-            },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (http_1_1) {
+                http_1 = http_1_1;
             }],
         execute: function() {
             AppProjets = (function () {
-                function AppProjets(_router) {
+                function AppProjets(_router, _http) {
+                    var _this = this;
                     this._router = _router;
+                    this._http = _http;
                     this.log = '';
-                    this.projets = [
-                        new projet_1.Projet(1, 'projet1', new client_1.Client(1, 'client1'), 50, 23),
-                        new projet_1.Projet(2, 'projet2', new client_1.Client(2, 'client2'), 75, 53)
-                    ];
+                    this._http.get('/test/projets.json').subscribe(function (res) {
+                        _this.projets = res.json();
+                    });
                 }
                 AppProjets.prototype.onClick = function () {
                     this.log = 'click';
@@ -50,7 +48,7 @@ System.register(['angular2/core', './projet', './client', 'angular2/router'], fu
                     core_1.Component({
                         templateUrl: 'template/app.projets.html'
                     }), 
-                    __metadata('design:paramtypes', [router_1.Router])
+                    __metadata('design:paramtypes', [router_1.Router, http_1.Http])
                 ], AppProjets);
                 return AppProjets;
             })();

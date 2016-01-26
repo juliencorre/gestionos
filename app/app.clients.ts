@@ -19,7 +19,6 @@
 	   	constructor(private _router: Router,private _http:Http) { 
 	   		
 	        this._http.get('/test/clients.json').subscribe(res => {
-		   	      
 		   	   	console.log('projet', res.json());
 		   	   	this.clients = res.json();
 		   	    });
@@ -33,5 +32,5 @@
         this.log='click';
 	    	this._router.navigate(['NouveauClient'] );
             }
-
+        
 	}
