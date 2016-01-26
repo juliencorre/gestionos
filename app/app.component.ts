@@ -8,6 +8,7 @@
     import {AppClients} 					from './app.clients';
     import {AppClient} 						from './app.client';
     import {AppNouveauClient} 				from './app.nouveauClient';
+    import {AppPwa} 						from './app.pwa';
     
     @Component({
         selector: 'my-app',
@@ -23,6 +24,7 @@
   		{path:'/clients', name: 'Clients',   component: AppClients},
   		{path:'/client/:id', name: 'AppClient',   component: AppClient},
         {path:'/newclient', name: 'NouveauClient',   component: AppNouveauClient},
+        {path:'/saisie', name: 'Pwa',   component: AppPwa},
 	])
     
     export class AppComponent { 

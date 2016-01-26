@@ -1,9 +1,26 @@
-<div class="container">
-	<nav>
-		<a [routerLink]="['Projets']">Projets</a> 	
-		<a [routerLink]="['Clients']">Clients</a>
-		<a [routerLink]="['Connexion']">Connexion</a>
-	</nav>
-	<router-outlet></router-outlet>
 
-</div>
+	<nav class="navbar navbar-default ">
+		<div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">
+	        <img alt="GestionOs" src="">
+	      </a>
+	    </div>
+	    
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	     <ul class="nav navbar-nav">
+	        <li><a [routerLink]="['Projets']">Projets</a></li>
+	        <li><a [routerLink]="['Clients']">Clients</a></li>
+	        <li><a [routerLink]="['Pwa']">Saisie du temps</a></li>
+        </ul>
+         <p class="navbar-text navbar-right"><a [routerLink]="['Connexion']">Connexion</a></p>
+        </div>
+       
+	  </div>
+	  
+	</nav>
+	
+
+<router-outlet></router-outlet>
+
+
