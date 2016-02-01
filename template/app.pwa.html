@@ -1,43 +1,55 @@
 <div class="container">
+	<p>{{log}}</p>
 	<p>PWA</p>
-	<table class="table table-condensed ">
-		<thead>
-					<tr>
-						<th >Projet</th>
-						<th >Tache</th>
-						<th >Lun 25</th>
-						<th >Mar 26</th>
-						<th >Mer 27</th>
-						<th >Jeu 28</th>
-						<th >Ven 29</th>
-						</tr>
-					<thead>
-					<tfoot>
-					</tfoot>
-					<tbody>
-						<tr >
-							<td >P1</td>
-						</tr>
-							<tr >
-								<td ></td>
-								<td >T1</td>
-								<td ><input ></td>
-								<td ><input ></td>
-								<td ><input ></td>
-								<td ><input ></td>
-								<td ><input ></td>
-							</tr>
-						<tr >
-							<td ></td>
-							<td >T2</td>
-							<td ><input ></td>
-							<td ><input ></td>
-							<td ><input ></td>
-							<td ><input ></td>
-							<td ><input ></td>
-						</tr>
-					
-						</tbody>
-	</table>
+	<div class="row">
+		<div class="col-md-1">
+			<button (click)="onPrecedente()">Précédente</button>
+			
+		</div>
+		<div class="col-md-10">
+			<table class="table table-condensed ">
+				<thead>
+							<tr>
+								<th >Projet</th>
+								<th >Tache</th>
+								<th style="width:30px" >{{lundi | date }}</th>
+								<th style="width:30px">{{mardi | date }}</th>
+								<th style="width:30px">{{mercredi | date }}</th>
+								<th style="width:30px">{{jeudi | date }}</th>
+								<th style="width:30px">{{vendredi | date }}</th>
+								</tr>
+							<thead>
+							<tfoot>
+							</tfoot>
+							<tbody>
+								<tr >
+									<td >P1</td>
+								</tr>
+									<tr >
+										<td ></td>
+										<td >T0</td>
+										<td ><input style="width:30px"></td>
+										<td ><input style="width:30px"></td>
+										<td ><input style="width:30px"></td>
+										<td ><input style="width:30px"></td>
+										<td ><input style="width:30px"></td>
+									</tr>
+								<tr >
+									<td ></td>
+									<td >T1</td>
+									<td ><input style="width:30px" type="text"></td>
+									<td ><input style="width:30px"></td>
+									<td ><input style="width:30px"></td>
+									<td ><input style="width:30px"></td>
+									<td ><input style="width:30px"></td>
+								</tr>
+							
+								</tbody>
+			</table>
+		</div>
+	<div class="col-md-1">
+		<button (click)="onSuivante()">Suivante</button>
+	</div>
+	</div>
 	<button class="btn btn-default" (click)="onValider()">Valider</button>
 </div>
