@@ -1,5 +1,5 @@
 <p class="bg-info">{{log}}</p>
-<div >
+<div class="container">
 
 			<form (ngSubmit)="onCreationProjet(projet)" #projetForm="ngForm" >
 					<div class="form-group">
@@ -11,15 +11,15 @@
 						</select>
 				  	</div>
 				  	<p>Taches</p>
-				  	<div class="row" *ngFor="#tache of taches">
+				  	<div class="row" *ngFor="#tache of projet.taches">
 						<div class="form-group col-md-11" >
-							<input required ngModel="tache.nom" type="text" class="form-control" placeholder="Nom de l'activité">
+							<input required [(ngModel)]="tache.nom" type="text" class="form-control" placeholder="Nom de l'activité">
 						</div>
 						<div class="col-md-1">
 							<button type="button" class="close pull-left" aria-label="Close" (click)="onRemoveTache(tache)"><span aria-hidden="true">&times;</span></button>
 						</div>
 					</div>
 				  	<button type="button" class="btn btn-link" (click)="onAddTache()">Ajouter tache</button>
-				  	<button type="submit" class="btn btn-default">Créer</button>
+				  	<button type="submit" class="btn btn-primary btn-xs">Créer</button>
 				</form>
 </div>

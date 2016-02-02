@@ -1,5 +1,8 @@
+ import {Activite}	from './activite';
+        
     export class Tache {
       constructor(
         public id:number,
-        public nom:string) { }
+        public nom:string,
+        public activites:Activite[]) { }
     }

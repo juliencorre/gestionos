@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './app.projets', './app.connexion', './app.nouveauProjet', './app.projet', './app.clients', './app.client', './app.nouveauClient', './app.pwa'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', './app.projets', './app.connexion', './app.nouveauProjet', './app.projet', './app.clients', './app.client', './app.nouveauClient', './app.pwa', './app.rh', './app.ressource'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/router', './app.projets', './app.con
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, app_projets_1, app_connexion_1, app_nouveauProjet_1, app_projet_1, app_clients_1, app_client_1, app_nouveauClient_1, app_pwa_1;
+    var core_1, router_1, app_projets_1, app_connexion_1, app_nouveauProjet_1, app_projet_1, app_clients_1, app_client_1, app_nouveauClient_1, app_pwa_1, app_rh_1, app_ressource_1;
     var AppComponent;
     return {
         setters:[
@@ -41,6 +41,12 @@ System.register(['angular2/core', 'angular2/router', './app.projets', './app.con
             },
             function (app_pwa_1_1) {
                 app_pwa_1 = app_pwa_1_1;
+            },
+            function (app_rh_1_1) {
+                app_rh_1 = app_rh_1_1;
+            },
+            function (app_ressource_1_1) {
+                app_ressource_1 = app_ressource_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -61,6 +67,8 @@ System.register(['angular2/core', 'angular2/router', './app.projets', './app.con
                         { path: '/client/:id', name: 'AppClient', component: app_client_1.AppClient },
                         { path: '/newclient', name: 'NouveauClient', component: app_nouveauClient_1.AppNouveauClient },
                         { path: '/saisie', name: 'Pwa', component: app_pwa_1.AppPwa },
+                        { path: '/rh', name: 'Rh', component: app_rh_1.AppRh },
+                        { path: '/ressource/:id', name: 'AppRessource', component: app_ressource_1.AppRessource },
                     ]), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

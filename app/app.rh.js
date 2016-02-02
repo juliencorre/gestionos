@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './client', 'angular2/http'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', 'angular2/http'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,8 +8,8 @@ System.register(['angular2/core', 'angular2/router', './client', 'angular2/http'
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, client_1, http_1;
-    var AppClient;
+    var core_1, router_1, http_1;
+    var AppRh;
     return {
         setters:[
             function (core_1_1) {
@@ -18,60 +18,43 @@ System.register(['angular2/core', 'angular2/router', './client', 'angular2/http'
             function (router_1_1) {
                 router_1 = router_1_1;
             },
-            function (client_1_1) {
-                client_1 = client_1_1;
-            },
             function (http_1_1) {
                 http_1 = http_1_1;
             }],
         execute: function() {
-            AppClient = (function () {
-                function AppClient(_router, _routeParams, _http) {
+            AppRh = (function () {
+                function AppRh(_router, _routeParams, _http) {
                     this._router = _router;
                     this._routeParams = _routeParams;
                     this._http = _http;
                     this.log = '';
-                    this.client = new client_1.Client(0, '');
-                    this.editable = false;
                 }
-                AppClient.prototype.ngOnInit = function () {
+                AppRh.prototype.ngOnInit = function () {
                     var _this = this;
                     var id = this._routeParams.get('id');
                     this.log = id;
-                    this._http.get('/test/client' + parseInt(id) + '.json').subscribe(function (res) {
-                        _this.client = res.json();
+                    //recupere les ressources de l'entreprise
+                    this._http.get('/test/ressources.json').subscribe(function (res) {
+                        _this.ressources = res.json();
+                        _this.log = res.json();
                     });
                 };
-                AppClient.prototype.onEdit = function () {
-                    this.editable = true;
-                    this.log = "editable";
+                AppRh.prototype.onSelectRessource = function (ressource) {
+                    this._router.navigate(['AppRessource', { id: ressource.id }]);
                 };
-                AppClient.prototype.onCancel = function () {
-                    var _this = this;
-                    this._http.get('/test/client' + this.client.id + '.json').subscribe(function (res) {
-                        _this.client = res.json();
-                    });
-                    this.editable = false;
-                    this.log = "not editable";
+                AppRh.prototype.onClick = function () {
                 };
-                AppClient.prototype.onEditClient = function (client) {
-                    this.editable = false;
-                    this.log = "not editable";
-                };
-                AppClient.prototype.onBack = function () {
-                    this._router.navigate(['Clients']);
-                };
-                AppClient = __decorate([
+                AppRh = __decorate([
                     core_1.Component({
-                        templateUrl: 'template/app.client.detail.html',
+                        templateUrl: 'template/app.rh.html',
                         bindings: [http_1.HTTP_PROVIDERS]
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, router_1.RouteParams, http_1.Http])
-                ], AppClient);
-                return AppClient;
+                ], AppRh);
+                return AppRh;
             })();
-            exports_1("AppClient", AppClient);
+            exports_1("AppRh", AppRh);
         }
     }
 });
-//# sourceMappingURL=app.client.js.map
+//# sourceMappingURL=app.rh.js.map

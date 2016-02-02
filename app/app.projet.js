@@ -84,6 +84,9 @@ System.register(['angular2/core', './projet', 'angular2/router', './client', './
                     }
                     this.log = 'remove index:' + removeIndex;
                 };
+                AppProjet.prototype.onBack = function () {
+                    this._router.navigate(['Projets']);
+                };
                 AppProjet = __decorate([
                     core_1.Component({
                         templateUrl: 'template/app.projet.detail.html',

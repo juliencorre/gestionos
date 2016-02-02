@@ -28,15 +28,14 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http'], function(
                     this._routeParams = _routeParams;
                     this._http = _http;
                     this.log = '';
-                    var now = new Date();
-                    var diff = now.getDay() - 1;
-                    this.lundi = now.setDate(now.getDate() - diff);
-                    this.mardi = now.setDate(now.getDate() + 1);
-                    this.mercredi = now.setDate(now.getDate() + 1);
-                    this.jeudi = now.setDate(now.getDate() + 1);
-                    this.vendredi = now.setDate(now.getDate() + 1);
+                    this.onToday();
                 }
                 AppPwa.prototype.ngOnInit = function () {
+                    var _this = this;
+                    //recupere le projet
+                    this._http.get('/test/pwas1.json').subscribe(function (res) {
+                        _this.pwas = res.json();
+                    });
                 };
                 AppPwa.prototype.onClick = function () {
                 };
@@ -67,6 +66,15 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http'], function(
                     this.mercredi.setTime(now.getTime() + (1000 * 60 * 60 * 24 * 9));
                     this.jeudi.setTime(now.getTime() + (1000 * 60 * 60 * 24 * 10));
                     this.vendredi.setTime(now.getTime() + (1000 * 60 * 60 * 24 * 11));
+                };
+                AppPwa.prototype.onToday = function () {
+                    var now = new Date();
+                    var diff = now.getDay() - 1;
+                    this.lundi = now.setDate(now.getDate() - diff);
+                    this.mardi = now.setDate(now.getDate() + 1);
+                    this.mercredi = now.setDate(now.getDate() + 1);
+                    this.jeudi = now.setDate(now.getDate() + 1);
+                    this.vendredi = now.setDate(now.getDate() + 1);
                 };
                 AppPwa = __decorate([
                     core_1.Component({

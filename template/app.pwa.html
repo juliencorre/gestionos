@@ -1,55 +1,52 @@
 <div class="container">
-	<p>{{log}}</p>
-	<p>PWA</p>
-	<div class="row">
-		<div class="col-md-1">
-			<button (click)="onPrecedente()">Précédente</button>
-			
+
+	<div class="row pull-right">
+		<div style="width: 150px;margin-right:50px">
+			<button (click)="onPrecedente()" type="button" class="btn btn-default btn-xs">
+			  <span class="glyphicon glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			</button>
+			<button (click)="onToday()" type="button" class="btn btn-default btn-xs">Cette semaine</button>
+			<button (click)="onSuivante()" type="button" class="btn btn-default btn-xs">
+			  <span class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			</button>
 		</div>
-		<div class="col-md-10">
+	</div>
+	<div class="row">
+		<div class="col-md-12">
 			<table class="table table-condensed ">
 				<thead>
-							<tr>
-								<th >Projet</th>
-								<th >Tache</th>
-								<th style="width:30px" >{{lundi | date }}</th>
-								<th style="width:30px">{{mardi | date }}</th>
-								<th style="width:30px">{{mercredi | date }}</th>
-								<th style="width:30px">{{jeudi | date }}</th>
-								<th style="width:30px">{{vendredi | date }}</th>
-								</tr>
-							<thead>
-							<tfoot>
-							</tfoot>
-							<tbody>
-								<tr >
-									<td >P1</td>
-								</tr>
-									<tr >
-										<td ></td>
-										<td >T0</td>
-										<td ><input style="width:30px"></td>
-										<td ><input style="width:30px"></td>
-										<td ><input style="width:30px"></td>
-										<td ><input style="width:30px"></td>
-										<td ><input style="width:30px"></td>
-									</tr>
-								<tr >
-									<td ></td>
-									<td >T1</td>
-									<td ><input style="width:30px" type="text"></td>
-									<td ><input style="width:30px"></td>
-									<td ><input style="width:30px"></td>
-									<td ><input style="width:30px"></td>
-									<td ><input style="width:30px"></td>
-								</tr>
-							
-								</tbody>
+				<tr>
+						<th>Projet</th>
+						<th>Tache</th>
+						<th style="width: 30px">{{lundi | date }}</th>
+						<th style="width: 30px">{{mardi | date }}</th>
+						<th style="width: 30px">{{mercredi | date }}</th>
+						<th style="width: 30px">{{jeudi | date }}</th>
+						<th style="width: 30px">{{vendredi | date }}</th>
+					</tr>
+				<thead>
+				<tfoot>
+				</tfoot>
+				<tbody *ngFor="#pwa of pwas">
+					<tr>
+						<td rowspan="3">{{pwa.nom}}</td>
+					</tr>
+					<tr *ngFor="#tache of pwa.taches">
+
+						<td>{{tache.nom}}</td>
+						<td *ngFor="#activite of tache.activites"><input
+							style="width: 30px" [(ngModel)]="activite.temps"></td>
+
+					</tr>
+				</tbody>
 			</table>
 		</div>
-	<div class="col-md-1">
-		<button (click)="onSuivante()">Suivante</button>
 	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<button class="btn btn-primary btn-xs" (click)="onValider()">Valider</button>
+		</div>
 	</div>
-	<button class="btn btn-default" (click)="onValider()">Valider</button>
 </div>
+	<p>{{log}}</p>
+		<!--p>{{pwas | json}}</p-->

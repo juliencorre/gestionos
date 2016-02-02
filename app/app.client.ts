@@ -49,5 +49,9 @@
         	this.editable=false;
 	    	this.log="not editable";
         }
+        
+	    onBack(){
+	    	this._router.navigate( ['Clients'] );
+	    }
 
 	}

@@ -4,6 +4,7 @@
   	import {NgForm}					from 'angular2/common';
     import {Client} 				from './client';
     import {Tache} 					from './tache';
+    import {Pwa} 					from './pwa';
     import {HTTP_PROVIDERS, Http} from 'angular2/http';
             
     @Component({
@@ -20,25 +21,22 @@
     	mercredi;
     	jeudi;
     	vendredi;
+
+    	pwas:Pwa[];
  	
-    	people: Object[];
-	   	
 	   	constructor(private _router: Router,
 	   				private _routeParams:RouteParams,private _http:Http) { 
 	   		
-	   		var now = new Date();
-	   		
-	   		var diff =now.getDay()-1;
-	   		
-	   		this.lundi=now.setDate(now.getDate()-diff);
-	   		this.mardi=now.setDate(now.getDate()+1);
-	   		this.mercredi=now.setDate(now.getDate()+1);
-	   		this.jeudi=now.setDate(now.getDate()+1);
-	   		this.vendredi=now.setDate(now.getDate()+1);
+	   		this.onToday();
 	   		
 				   	}
 	   	
 	    ngOnInit() {
+	    	
+	        //recupere le projet
+	        this._http.get('/test/pwas1.json').subscribe(res => {
+		   	   	this.pwas = res.json();
+		   	    });
 	    	
 	      }
 	    
@@ -78,6 +76,18 @@
 	    	this.mercredi.setTime(now.getTime()+(1000*60*60*24*9));
 	    	this.jeudi.setTime(now.getTime()+(1000*60*60*24*10));
 	    	this.vendredi.setTime(now.getTime()+(1000*60*60*24*11));	    	
+	    }
+	    
+	    onToday(){
+	    	var now = new Date();
+	   		
+	   		var diff =now.getDay()-1;
+	   		
+	   		this.lundi=now.setDate(now.getDate()-diff);
+	   		this.mardi=now.setDate(now.getDate()+1);
+	   		this.mercredi=now.setDate(now.getDate()+1);
+	   		this.jeudi=now.setDate(now.getDate()+1);
+	   		this.vendredi=now.setDate(now.getDate()+1);
 	    }
 	
 

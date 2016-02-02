@@ -19,9 +19,9 @@
 		"taches": [ 
 		            { "id": 1, "nom": "OK" }, 
 		            { "id": 2, "nom": "tache1" },
-		            { "id": 2, "nom": "tache2" },
-		            { "id": 2, "nom": "tache3" },
-		            { "id": 2, "nom": "tache4" }
+		            { "id": 3, "nom": "tache2" },
+		            { "id": 4, "nom": "tache3" },
+		            { "id": 5, "nom": "tache4" }
 		            
 		          ] 
 	}

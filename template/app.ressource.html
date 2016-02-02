@@ -1,0 +1,46 @@
+<p class="bg-info">{{log}}</p>
+<div class="container">
+
+
+	<div *ngIf="!editable">
+		<button (click)="onBack()" type="button" class="btn btn-default btn-xs">
+		  <span class="glyphicon glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Retour
+		</button>
+		<hr>
+		<p>Prenom: {{ressource.prenom}}</p>
+		<p>Nom: {{ressource.nom}}</p>
+		<p>Mail: {{ressource.mail}}</p>
+		<p>Salaire: {{ressource.salaire}}</p>
+		<p>Role: {{ressource.role}}</p>
+		<button class="btn btn-primary btn-xs" (click)="onEdit()">Modifier</button>
+	</div>
+	<div>
+		<form *ngIf="editable" (ngSubmit)="onEditRessource(ressource)"
+			#projetForm="ngForm">
+			<div class="form-group">
+				<input required [(ngModel)]="ressource.prenom" type="text"
+					class="form-control" placeholder="Prenom">
+			</div>
+			<div class="form-group">
+				<input required [(ngModel)]="ressource.nom" type="text"
+					class="form-control" placeholder="Nom">
+			</div>
+			<div class="form-group">
+				<input required [(ngModel)]="ressource.mail" type="text"
+					class="form-control" placeholder="E-Mail">
+			</div>
+			<div class="form-group">
+				<input required [(ngModel)]="ressource.salaire" type="text"
+					class="form-control" placeholder="Salaire">
+			</div>
+			<div class="form-group">
+				<select class="form-control">
+					<option *ngFor="#role of roles" [value]="role.id">{{role.nom}}</option>
+				</select>
+			</div>
+
+			<button class="btn btn-xs" (click)="onCancel()">Annuler</button>
+			<button type="submit" class="btn btn-primary btn-xs">Valider</button>
+	</form>
+</div>
+</div>

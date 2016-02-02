@@ -9,7 +9,9 @@
     import {AppClient} 						from './app.client';
     import {AppNouveauClient} 				from './app.nouveauClient';
     import {AppPwa} 						from './app.pwa';
-    
+    import {AppRh} 							from './app.rh';
+    import {AppRessource} 					from './app.ressource';
+            
     @Component({
         selector: 'my-app',
         templateUrl: 'template/app.menu.html',
@@ -25,6 +27,8 @@
   		{path:'/client/:id', name: 'AppClient',   component: AppClient},
         {path:'/newclient', name: 'NouveauClient',   component: AppNouveauClient},
         {path:'/saisie', name: 'Pwa',   component: AppPwa},
+        {path:'/rh', name: 'Rh',   component: AppRh},
+        {path:'/ressource/:id', name: 'AppRessource',   component: AppRessource},
 	])
     
     export class AppComponent { 

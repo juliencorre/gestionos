@@ -1,0 +1,41 @@
+[
+	
+{ 
+	"id": 1, 
+	"nom": "gestionos", 
+	"taches": [ 
+	            { "id": 1, "nom": "creation projet", "activites": [	{"date":"01/02/2016","temps":4},
+					            									{"date":"02/02/2016","temps":0},
+					            									{"date":"03/02/2016","temps":0},
+					            									{"date":"04/02/2016","temps":1},
+					            									{"date":"05/02/2016","temps":2}]
+	            }, 
+	            { "id": 2, "nom": "affichage projet", "activites": [{"date":"01/02/2016","temps":0},
+					            									{"date":"02/02/2016","temps":1},
+					            									{"date":"03/02/2016","temps":0},
+					            									{"date":"04/02/2016","temps":1},
+					            									{"date":"05/02/2016","temps":0}]
+	            }  
+	          ] 
+},
+{ 
+	"id": 2, 
+	"nom": "kstudio", 
+	"taches": [ 
+	            { "id": 1, "nom": "tache 1", "activites": [	{"date":"01/02/2016","temps":4},
+					            									{"date":"02/02/2016","temps":0},
+					            									{"date":"03/02/2016","temps":0},
+					            									{"date":"04/02/2016","temps":1},
+					            									{"date":"05/02/2016","temps":2}]
+	            }, 
+	            { "id": 2, "nom": "tache 2", "activites": [{"date":"01/02/2016","temps":0},
+					            									{"date":"02/02/2016","temps":1},
+					            									{"date":"03/02/2016","temps":0},
+					            									{"date":"04/02/2016","temps":1},
+					            									{"date":"05/02/2016","temps":0}]
+	            }  
+	          ] 
+}
+
+
+]

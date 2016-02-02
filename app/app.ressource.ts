@@ -4,39 +4,42 @@
   	import {NgForm}					from 'angular2/common';
     import {Client} 				from './client';
     import {Tache} 					from './tache';
+    import {Ressource} 				from './ressource';
+    import {Role} 				from './role';    
     import {HTTP_PROVIDERS, Http} from 'angular2/http';
             
     @Component({
-    	templateUrl: 'template/app.projet.detail.html',
+    	templateUrl: 'template/app.ressource.html',
     	bindings: [HTTP_PROVIDERS]
     })
     
-    export class AppProjet {
+    export class AppRessource {
 
     	log='';
-    	projet:Projet=new Projet(0,'',new Client(0,''),0,0);
-    	clients:Client[]=[];
+    	ressource:Ressource=new Ressource(0,'','','',0,'');
+    	roles:Role[];
+    	
     	
     	editable=false;
     	
     	people: Object[];
 	   	constructor(private _router: Router,
 	   				private _routeParams:RouteParams,private _http:Http) { 
-				   	}
-	   	
+	   	}
+        
 	    ngOnInit() {
 	        let id = this._routeParams.get('id');
 	        this.log=id;
 	        
 	        //recupere le projet
-	        this._http.get('/test/projet'+parseInt(id)+'.json').subscribe(res => {
-		   	   	this.projet = res.json();
+	        this._http.get('/test/ressource'+parseInt(id)+'.json').subscribe(res => {
+		   	   	this.ressource = res.json();
 		   	    });
 	        
 	        //recupere les clients
-	        this._http.get('/test/clients.json').subscribe(res => {
-		   	   	console.log('projet', res.json());
-		   	   	this.clients = res.json();
+	        this._http.get('/test/roles.json').subscribe(res => {
+		   	   	console.log('roles', res.json());
+		   	   	this.roles = res.json();
 		   	    });
 	        
 	      }
@@ -48,37 +51,21 @@
 	    
 	    onCancel(){
 	    	//recupere le projet
-	        this._http.get('/test/projet'+this.projet.id +'.json').subscribe(res => {
-		   	   	this.projet = res.json();
+	        this._http.get('/test/ressource'+this.ressource.id +'.json').subscribe(res => {
+		   	   	this.ressource = res.json();
 		   	    });
 	        
 	    	this.editable=false;
 	    	this.log="not editable";
 	    }
 	    
-	    onEditProjet(projet:Projet){
+	    onEditRessource(ressource:Ressource){
 	    	this.editable=false;
 	    	this.log="not editable";
 	    }
 	    
-	    onAddTache()
-	    {
-	    	this.log='Add tache';
-	    	this.projet.taches.push(new Tache(0,''));
-	    }
-	    
-	    onRemoveTache(tache:Tache)
-	    {
-	    	this.log='Remove tache:'+tache.id;
-	    	var removeIndex = this.projet.taches.indexOf(tache);
-	    	if (removeIndex > -1) {
-	    		this.projet.taches.splice(removeIndex, 1);
-	    	}
-	    	this.log='remove index:'+removeIndex;
-	    }
-	    
 	    onBack(){
-	    	this._router.navigate( ['Projets'] );
+	    	this._router.navigate( ['Rh'] );
 	    }
 
 	}

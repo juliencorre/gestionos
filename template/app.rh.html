@@ -1,22 +1,27 @@
 <p class="bg-info">{{log}}</p>
 <div class="container">
 	<button type="button" class="btn btn-primary btn-xs"
-		(click)="onClick()">Nouveau client</button>
-<hr>
+		(click)="onClick()">Nouveau collaborateur</button>
+
 	<table class="table table-hover table-condensed">
 		<thead>
 			<tr>
 				<!--th>Id</th-->
+				<th>Prenom</th>
 				<th>Nom</th>
+				<th>E-mail</th>
+				<th>role</th>
 			</tr>
 		<thead>
 		<tfoot>
 		</tfoot>
 		<tbody>
-			<tr *ngFor="#client of clients">
+			<tr *ngFor="#ressource of ressources" (click)="onSelectRessource(ressource)" >
 				<!--td>{{client.id}}</td-->
-				<td><button type="button" class="btn btn-link"
-						(click)="onSelectClient(client)">{{client.nom}}</button></td>
+				<td>{{ressource.prenom}}</td>
+				<td>{{ressource.nom}}</td>		
+				<td>{{ressource.mail}}</td>	
+				<td>{{ressource.role}}</td>
 			</tr>
 		</tbody>
 	</table>

@@ -1,4 +1,4 @@
-System.register(['angular2/core', './projet', 'angular2/router', './client', './tache'], function(exports_1) {
+System.register(['angular2/core', './projet', 'angular2/router', './client', './tache', 'angular2/http'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './projet', 'angular2/router', './client', './
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, projet_1, router_1, client_1, tache_1;
+    var core_1, projet_1, router_1, client_1, tache_1, http_1;
     var AppNouveauProjet;
     return {
         setters:[
@@ -26,19 +26,23 @@ System.register(['angular2/core', './projet', 'angular2/router', './client', './
             },
             function (tache_1_1) {
                 tache_1 = tache_1_1;
+            },
+            function (http_1_1) {
+                http_1 = http_1_1;
             }],
         execute: function() {
             AppNouveauProjet = (function () {
-                function AppNouveauProjet(_router) {
+                function AppNouveauProjet(_router, _http) {
+                    var _this = this;
                     this._router = _router;
+                    this._http = _http;
                     this.log = '';
                     this.projet = new projet_1.Projet(0, '', new client_1.Client(0, ''), 0, 0);
                     this.index = 0;
-                    this.clients = [
-                        new client_1.Client(1, 'client1'),
-                        new client_1.Client(2, 'client2')
-                    ];
-                    this.taches = [];
+                    this._http.get('/test/clients.json').subscribe(function (res) {
+                        console.log('projet', res.json());
+                        _this.clients = res.json();
+                    });
                 }
                 AppNouveauProjet.prototype.onCreationProjet = function (nouveauProjet) {
                     this.log = nouveauProjet.nom;
@@ -47,13 +51,13 @@ System.register(['angular2/core', './projet', 'angular2/router', './client', './
                 AppNouveauProjet.prototype.onAddTache = function () {
                     this.log = 'Add tache';
                     this.index++;
-                    this.taches.push(new tache_1.Tache(this.index, ''));
+                    this.projet.taches.push(new tache_1.Tache(this.index, ''));
                 };
                 AppNouveauProjet.prototype.onRemoveTache = function (tache) {
                     this.log = 'Remove tache:' + tache.id;
-                    var removeIndex = this.taches.indexOf(tache);
+                    var removeIndex = this.projet.taches.indexOf(tache);
                     if (removeIndex > -1) {
-                        this.taches.splice(removeIndex, 1);
+                        this.projet.taches.splice(removeIndex, 1);
                     }
                     this.log = 'remove index:' + removeIndex;
                 };
@@ -62,7 +66,7 @@ System.register(['angular2/core', './projet', 'angular2/router', './client', './
                         templateUrl: 'template/app.projet.html',
                         inputs: ['projet']
                     }), 
-                    __metadata('design:paramtypes', [router_1.Router])
+                    __metadata('design:paramtypes', [router_1.Router, http_1.Http])
                 ], AppNouveauProjet);
                 return AppNouveauProjet;
             })();
