@@ -1,0 +1,28 @@
+{{diagnostic}}
+{{log}}
+<form (ngSubmit)="onEditRessource()" #projetForm="ngForm">
+	<div class="form-group">
+		<input required [(ngModel)]="ressource.prenom" type="text"
+			class="form-control" placeholder="Prenom">
+	</div>
+	<div class="form-group">
+		<input required [(ngModel)]="ressource.nom" type="text"
+			class="form-control" placeholder="Nom">
+	</div>
+	<div class="form-group">
+		<input required [(ngModel)]="ressource.mail" type="text"
+			class="form-control" placeholder="E-Mail">
+	</div>
+	<div class="form-group">
+		<input required [(ngModel)]="ressource.salaire" type="text"
+			class="form-control" placeholder="Salaire">
+	</div>
+	<div class="form-group">
+		<select class="form-control">
+			<option *ngFor="#role of roles" [value]="role.id">{{role.nom}}</option>
+		</select>
+	</div>
+
+	<button class="btn btn-xs" (click)="onCancel()">Annuler</button>
+	<button type="submit" class="btn btn-primary btn-xs">Valider</button>
+</form>

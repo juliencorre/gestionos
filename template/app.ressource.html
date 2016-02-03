@@ -1,7 +1,5 @@
-<p class="bg-info">{{log}}</p>
+<p class="bg-info">{{log1}}</p>
 <div class="container">
-
-
 	<div *ngIf="!editable">
 		<button (click)="onBack()" type="button" class="btn btn-default btn-xs">
 		  <span class="glyphicon glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Retour
@@ -15,7 +13,12 @@
 		<button class="btn btn-primary btn-xs" (click)="onEdit()">Modifier</button>
 	</div>
 	<div>
-		<form *ngIf="editable" (ngSubmit)="onEditRessource(ressource)"
+	<ressource-form *ngIf="editable" 
+		[ressource]="ressource"
+		(editRessource)="onSaved($event)"
+        (cancel)="onCancel($event)" >
+	</ressource-form>
+		<!--form *ngIf="editable" (ngSubmit)="onEditRessource(ressource)"
 			#projetForm="ngForm">
 			<div class="form-group">
 				<input required [(ngModel)]="ressource.prenom" type="text"
@@ -41,6 +44,6 @@
 
 			<button class="btn btn-xs" (click)="onCancel()">Annuler</button>
 			<button type="submit" class="btn btn-primary btn-xs">Valider</button>
-	</form>
+	</form-->
 </div>
 </div>

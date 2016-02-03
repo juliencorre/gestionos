@@ -5,67 +5,54 @@
     import {Client} 				from './client';
     import {Tache} 					from './tache';
     import {Ressource} 				from './ressource';
-    import {Role} 				from './role';    
-    import {HTTP_PROVIDERS, Http} from 'angular2/http';
-            
+    import {Role} 					from './role';    
+    import {HTTP_PROVIDERS, Http} 	from 'angular2/http';
+    import {AppRessourceForm} 		from './app.ressource.form';
+    
     @Component({
     	templateUrl: 'template/app.ressource.html',
-    	bindings: [HTTP_PROVIDERS]
+    	bindings: [HTTP_PROVIDERS],
+    	directives: [AppRessourceForm]
     })
     
     export class AppRessource {
 
-    	log='';
+    	log1='';
     	ressource:Ressource=new Ressource(0,'','','',0,'');
-    	roles:Role[];
-    	
     	
     	editable=false;
     	
-    	people: Object[];
 	   	constructor(private _router: Router,
 	   				private _routeParams:RouteParams,private _http:Http) { 
 	   	}
         
 	    ngOnInit() {
 	        let id = this._routeParams.get('id');
-	        this.log=id;
+	        this.log1=id;
 	        
 	        //recupere le projet
 	        this._http.get('/test/ressource'+parseInt(id)+'.json').subscribe(res => {
 		   	   	this.ressource = res.json();
 		   	    });
 	        
-	        //recupere les clients
-	        this._http.get('/test/roles.json').subscribe(res => {
-		   	   	console.log('roles', res.json());
-		   	   	this.roles = res.json();
-		   	    });
-	        
 	      }
 	    
 	    onEdit(){
 	    	this.editable=true;
-	    	this.log="editable";
+	    	this.log1="editable";
 	    }
 	    
-	    onCancel(){
-	    	//recupere le projet
-	        this._http.get('/test/ressource'+this.ressource.id +'.json').subscribe(res => {
-		   	   	this.ressource = res.json();
-		   	    });
-	        
+	    onCancel(ressource:Ressource){
 	    	this.editable=false;
-	    	this.log="not editable";
+	    	this.log1="not editable";
 	    }
 	    
-	    onEditRessource(ressource:Ressource){
+	    onSaved(ressource:Ressource){
 	    	this.editable=false;
-	    	this.log="not editable";
+	    	this.log1="not editable";
 	    }
 	    
 	    onBack(){
 	    	this._router.navigate( ['Rh'] );
 	    }
-
 	}
