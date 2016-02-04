@@ -15,6 +15,7 @@
 		<div class="row" *ngFor="#tache of projet.taches">
 			<div class="col-md-1">id: {{tache.id}}</div>
 			<div class="col-md-3">nom: {{tache.nom}}</div>
+			<div class="col-md-2">charge: {{tache.charge}}</div>
 		</div>
 		<button class="btn btn-primary btn-xs" (click)="onEdit()">Modifier</button>
 	</div>
@@ -29,14 +30,33 @@
 						</select>
 				  	</div>
 				  	<p>Taches</p>
-				  	<div class="row" *ngFor="#tache of projet.taches">
+				  	
+				  	<table class="table table-condensed">
+				  		<thead>
+				  			<tr>
+				  				<th>Tache</th>
+				  				<th>Charge</th>
+				  				<th></th>
+				  			</tr>
+				  		</thead>
+				  		<tfoot></tfoot>
+				  		<tbody>
+				  			<tr *ngFor="#tache of projet.taches">
+				  				<td><input required [(ngModel)]="tache.nom" type="text" class="form-control"></td>
+				  				<td><input required [(ngModel)]="tache.charge" type="text" class="form-control"></td>
+				  				<td><button type="button" class="close pull-left" aria-label="Close" (click)="onRemoveTache(tache)"><span aria-hidden="true">&times;</span></button></td>
+				  			</tr>
+				  		</tbody>
+				  	</table>
+				  	
+				  	<!--div class="row" *ngFor="#tache of projet.taches">
 						<div class="form-group col-md-11" >
 							<input required [(ngModel)]="tache.nom" type="text" class="form-control" placeholder="Nom de l'activité" >
 						</div>
 						<div class="col-md-1">
 							<button type="button" class="close pull-left" aria-label="Close" (click)="onRemoveTache(tache)"><span aria-hidden="true">&times;</span></button>
 						</div>
-					</div>
+					</div-->
 					<div><button type="button" class="btn btn-link  btn-xs" (click)="onAddTache()">Ajouter tache</button></div>
 				  	<div>
 				  	<button class="btn btn-xs" (click)="onCancel()">Annuler</button>

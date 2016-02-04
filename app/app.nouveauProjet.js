@@ -51,7 +51,7 @@ System.register(['angular2/core', './projet', 'angular2/router', './client', './
                 AppNouveauProjet.prototype.onAddTache = function () {
                     this.log = 'Add tache';
                     this.index++;
-                    this.projet.taches.push(new tache_1.Tache(this.index, ''));
+                    this.projet.taches.push(new tache_1.Tache(this.index, '', 0, null));
                 };
                 AppNouveauProjet.prototype.onRemoveTache = function (tache) {
                     this.log = 'Remove tache:' + tache.id;

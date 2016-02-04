@@ -1,0 +1,20 @@
+Modifier la structure de  l'objet client avec:
+	STRUCTURE	
+	ACTIVITÉ PRINCIPALE	
+	AJOUTS	
+	CA	
+	ANNEE	
+	SIREN	
+	INFOS	
+	SITES	
+	NOTE 0 à 3	
+	TEL	
+	EMAIL	
+	DIRIGEANT	
+	ADRESSE	
+	CP	
+	VILLE	
+	CODE_NAF	
+	LIBELLE_NAF
+
+

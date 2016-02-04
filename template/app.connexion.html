@@ -1,4 +1,6 @@
 {{diagnostic}}
+{{log}}
+{{ressources | json}}
 <div class="container">
 	<h1>Connexion</h1>
 	TODO: remove this : data: {{data}}
@@ -6,13 +8,13 @@
 	<form id="form_connexion" (ngSubmit)="onSubmit(user)"
 		#userForm="ngForm">
 		<div class="form-group">
-			<input type="email" class="form-control" placeholder="e-mail"
-				required [(ngModel)]="user.mail"> TODO: remove this:
+			<input  class="form-control" placeholder="e-mail"
+				 [(ngModel)]="user.mail"> TODO: remove this:
 			{{user.mail}}
 		</div>
 		<div class="form-group">
-			<input type="password" class="form-control"
-				placeholder="mot de passe" required [(ngModel)]="user.pwd">
+			<input  class="form-control"
+				placeholder="mot de passe"  [(ngModel)]="user.pwd">
 			TODO: remove this: {{user.pwd}}
 		</div>
 		<button type="submit" class="btn btn-primary btn-ms">Connexion</button>

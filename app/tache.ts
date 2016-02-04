@@ -4,5 +4,6 @@
       constructor(
         public id:number,
         public nom:string,
+        public charge:number,
         public activites:Activite[]) { }
     }

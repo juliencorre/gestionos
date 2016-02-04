@@ -36,7 +36,7 @@
 	    {
 	    	this.log='Add tache';
 	    	this.index++;
-	    	this.projet.taches.push(new Tache(this.index,''));
+	    	this.projet.taches.push(new Tache(this.index,'',0,null));
 	    }
 	    
 	    onRemoveTache(tache:Tache)

@@ -5,7 +5,7 @@
 	"avancement": 1, 
 	"marge": 0, 
 	"taches": [ 
-	            { "id": 1, "nom": "creation projet" }, 
-	            { "id": 2, "nom": "affichage projet" } 
+	            { "id": 1, "nom": "creation projet","charge":2.5 }, 
+	            { "id": 2, "nom": "affichage projet","charge":3 } 
 	          ] 
 }
