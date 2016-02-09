@@ -25,7 +25,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable'], function(
             AppConnexionService = (function () {
                 function AppConnexionService(http) {
                     this.http = http;
-                    this._Url = 'http://jsonplaceholder.typicode.com/posts';
+                    this._Url = 'http://localhost:3000/api/v1/login';
                 }
                 /**
                  * Authentification d'un utilisateur

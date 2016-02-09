@@ -1,4 +1,4 @@
-System.register(['angular2/core', './user', 'angular2/router', './app.connexion.service'], function(exports_1) {
+System.register(['angular2/core', './user', 'angular2/router', './app.connexion.service', './user.singleton'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './user', 'angular2/router', './app.connexion.
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, user_1, router_1, app_connexion_service_1;
+    var core_1, user_1, router_1, app_connexion_service_1, user_singleton_1;
     var AppConnexion;
     return {
         setters:[
@@ -23,12 +23,17 @@ System.register(['angular2/core', './user', 'angular2/router', './app.connexion.
             },
             function (app_connexion_service_1_1) {
                 app_connexion_service_1 = app_connexion_service_1_1;
+            },
+            function (user_singleton_1_1) {
+                user_singleton_1 = user_singleton_1_1;
             }],
         execute: function() {
             AppConnexion = (function () {
-                function AppConnexion(_router, connexionService) {
+                // loginResponse:LoginResponse;
+                function AppConnexion(_router, connexionService, _userSingleton) {
                     this._router = _router;
                     this.connexionService = connexionService;
+                    this._userSingleton = _userSingleton;
                     this.data = '...';
                     this.user = new user_1.User('', '');
                 }
@@ -37,14 +42,21 @@ System.register(['angular2/core', './user', 'angular2/router', './app.connexion.
                     this.log = 'connexion';
                     this.data = 'OK !';
                     this.data = userConnexion.mail;
-                    this.connexionService.authenticate2(userConnexion).subscribe(function (ressources) { return _this.ressources = ressources; }, function (error) { return _this.log = error; });
+                    this.connexionService.authenticate2(userConnexion).subscribe(function (loginResponse) { return _this.success(loginResponse); }, function (error) { return _this.log = error; });
                 };
+                AppConnexion.prototype.success = function (loginResponse) {
+                    this.ressource = loginResponse.ressource;
+                    this._userSingleton.token = loginResponse.token;
+                    console.log(this._userSingleton.token);
+                    this._router.navigate(['Projets']);
+                };
+                ;
                 AppConnexion = __decorate([
                     core_1.Component({
                         templateUrl: 'template/app.connexion.html',
                         providers: [app_connexion_service_1.AppConnexionService]
                     }), 
-                    __metadata('design:paramtypes', [router_1.Router, app_connexion_service_1.AppConnexionService])
+                    __metadata('design:paramtypes', [router_1.Router, app_connexion_service_1.AppConnexionService, user_singleton_1.UserSingleton])
                 ], AppConnexion);
                 return AppConnexion;
             })();

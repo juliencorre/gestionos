@@ -1,0 +1,1 @@
+{"version":3,"file":"user.singleton.js","sourceRoot":"","sources":["user.singleton.ts"],"names":["UserSingleton","UserSingleton.constructor"],"mappings":";;;;;;;;;;;;;;;;;;YAEC;gBAKKA;gBAAgBC,CAACA;gBALtBD;oBAACA,iBAAUA,EAAEA;;kCAOTA;gBAADA,oBAACA;YAADA,CAACA,AAPJ,IAOI;YAPJ,yCAOI,CAAA"}

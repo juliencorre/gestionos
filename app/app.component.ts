@@ -11,11 +11,13 @@
     import {AppPwa} 						from './app.pwa';
     import {AppRh} 							from './app.rh';
     import {AppRessource} 					from './app.ressource';
-            
+    import {UserSingleton} 				from './user.singleton';
+                
     @Component({
         selector: 'my-app',
         templateUrl: 'template/app.menu.html',
-  		directives: [ROUTER_DIRECTIVES]
+  		directives: [ROUTER_DIRECTIVES],
+  		providers:[UserSingleton]
     })
     
     @RouteConfig([
@@ -32,5 +34,5 @@
 	])
     
     export class AppComponent { 
-    
+	    constructor(private _userSingleton:UserSingleton) { }
     }

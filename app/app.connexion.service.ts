@@ -3,6 +3,7 @@ import {User} 																	from './user';
 import {HTTP_BINDINGS,Http, Response,Headers, RequestOptions} 					from 'angular2/http';
 import {Observable}     														from 'rxjs/Observable';
 import {Ressource} 																from './ressource';
+import {LoginResponse} 															from './model/login.response';
 
 @Injectable()
 export class AppConnexionService{
@@ -13,7 +14,7 @@ export class AppConnexionService{
 
 	
 	
-	private _Url = 'http://jsonplaceholder.typicode.com/posts';
+	private _Url = 'http://localhost:3000/api/v1/login';
 	
 	/** 
 	 * Authentification d'un utilisateur
@@ -40,7 +41,7 @@ export class AppConnexionService{
 	    let options = new RequestOptions({ headers: headers });
 	    
 		return this.http.post(this._Url, body, options)
-        .map(res => <Ressource[]> res.json())
+        .map(res => <LoginResponse> res.json())
         .do(data => console.log(data)) // eyeball results in the console
         .catch(this.handleError);
   
