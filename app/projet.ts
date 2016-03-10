@@ -6,7 +6,7 @@
     public taches:Tache[]=[];
     
       constructor(
-      	public id:number,
+      	public _id:number,
         public nom:string,
         public client:Client,
         public avancement:number,

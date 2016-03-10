@@ -15,7 +15,7 @@
                 
     @Component({
         selector: 'my-app',
-        templateUrl: 'template/app.menu.html',
+        templateUrl: 'template/app.html',
   		directives: [ROUTER_DIRECTIVES],
   		providers:[UserSingleton]
     })
@@ -34,5 +34,11 @@
 	])
     
     export class AppComponent { 
-	    constructor(private _userSingleton:UserSingleton) { }
+    
+    user='test';
+    
+	    constructor(private _userSingleton:UserSingleton) { 
+	    	this.user=this._userSingleton.token;
+	    	this.user='cool';
+	    }
     }

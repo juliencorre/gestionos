@@ -1,12 +1,13 @@
 // =======================
 // get the packages we need ============
 // =======================
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var jwt    = require('jwt-simple'); // used to create, sign, and verify tokens
-var morgan      = require('morgan');
+var express = 		require('express');
+var path = 			require('path');
+var cookieParser = 	require('cookie-parser');
+var bodyParser = 	require('body-parser');
+var jwt    = 		require('jwt-simple'); // used to create, sign, and verify tokens
+var morgan      = 	require('morgan');
+
 
 var index = require('./routes/index');
 var api = require('./routes/api');

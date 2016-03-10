@@ -1,4 +1,4 @@
-System.register(['angular2/core', './projet', 'angular2/router', './client', './tache', 'angular2/http'], function(exports_1) {
+System.register(['angular2/core', './projet', 'angular2/router', './client', './tache', 'angular2/http', './app.menu'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', './projet', 'angular2/router', './client', './
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, projet_1, router_1, client_1, tache_1, http_1;
+    var core_1, projet_1, router_1, client_1, tache_1, http_1, app_menu_1;
     var AppNouveauProjet;
     return {
         setters:[
@@ -29,6 +29,9 @@ System.register(['angular2/core', './projet', 'angular2/router', './client', './
             },
             function (http_1_1) {
                 http_1 = http_1_1;
+            },
+            function (app_menu_1_1) {
+                app_menu_1 = app_menu_1_1;
             }],
         execute: function() {
             AppNouveauProjet = (function () {
@@ -39,13 +42,22 @@ System.register(['angular2/core', './projet', 'angular2/router', './client', './
                     this.log = '';
                     this.projet = new projet_1.Projet(0, '', new client_1.Client(0, ''), 0, 0);
                     this.index = 0;
-                    this._http.get('/test/clients.json').subscribe(function (res) {
-                        console.log('projet', res.json());
-                        _this.clients = res.json();
+                    this._Url = 'http://localhost:3000/api/v1/projet/new';
+                    //recupere les clients
+                    this._http.get('http://localhost:3000/api/v1/clients').subscribe(function (res) {
+                        console.log('projets', res.json().clients);
+                        _this.clients = res.json().clients;
                     });
                 }
                 AppNouveauProjet.prototype.onCreationProjet = function (nouveauProjet) {
+                    console.log(nouveauProjet);
                     this.log = nouveauProjet.nom;
+                    var body = JSON.stringify({ nouveauProjet: nouveauProjet });
+                    var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+                    var options = new http_1.RequestOptions({ headers: headers });
+                    this._http.post(this._Url, body, options).subscribe(function (res) {
+                        console.log(res.json().projet);
+                    });
                     this._router.navigate(['Projets']);
                 };
                 AppNouveauProjet.prototype.onAddTache = function () {
@@ -64,7 +76,8 @@ System.register(['angular2/core', './projet', 'angular2/router', './client', './
                 AppNouveauProjet = __decorate([
                     core_1.Component({
                         templateUrl: 'template/app.projet.html',
-                        inputs: ['projet']
+                        inputs: ['projet'],
+                        directives: [app_menu_1.AppMenu]
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, http_1.Http])
                 ], AppNouveauProjet);

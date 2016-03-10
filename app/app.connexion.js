@@ -46,15 +46,18 @@ System.register(['angular2/core', './user', 'angular2/router', './app.connexion.
                 };
                 AppConnexion.prototype.success = function (loginResponse) {
                     this.ressource = loginResponse.ressource;
-                    this._userSingleton.token = loginResponse.token;
-                    console.log(this._userSingleton.token);
+                    //this._userSingleton.token=loginResponse.token;
+                    //console.log('userSingletonToken= '+this._userSingleton.token);
+                    // Save data to sessionStorage
+                    sessionStorage.setItem('token', loginResponse.token);
+                    sessionStorage.setItem('username', loginResponse.ressource.nom);
                     this._router.navigate(['Projets']);
                 };
                 ;
                 AppConnexion = __decorate([
                     core_1.Component({
                         templateUrl: 'template/app.connexion.html',
-                        providers: [app_connexion_service_1.AppConnexionService]
+                        providers: [app_connexion_service_1.AppConnexionService, user_singleton_1.UserSingleton]
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, app_connexion_service_1.AppConnexionService, user_singleton_1.UserSingleton])
                 ], AppConnexion);

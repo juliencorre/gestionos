@@ -4,11 +4,13 @@
   	import {NgForm}					from 'angular2/common';
     import {Client} 				from './client';
     import {Tache} 					from './tache';
-    import {HTTP_PROVIDERS, Http} from 'angular2/http';
+    import {HTTP_PROVIDERS, Http} 	from 'angular2/http';
+    import {AppMenu} 				from './app.menu';
             
     @Component({
     	templateUrl: 'template/app.projet.detail.html',
-    	bindings: [HTTP_PROVIDERS]
+    	bindings: [HTTP_PROVIDERS],
+    	directives: [AppMenu]
     })
     
     export class AppProjet {
@@ -27,15 +29,15 @@
 	    ngOnInit() {
 	        let id = this._routeParams.get('id');
 	        this.log=id;
-	        
+
 	        //recupere le projet
-	        this._http.get('/test/projet'+parseInt(id)+'.json').subscribe(res => {
-		   	   	this.projet = res.json();
+	        this._http.get('http://localhost:3000/api/v1/projet/'+parseInt(id)).subscribe(res => {
+		   	   	this.projet = res.json().projet;
 		   	    });
 	        
 	        //recupere les clients
-	        this._http.get('/test/clients.json').subscribe(res => {
-		   	   	console.log('projet', res.json());
+	        this._http.get('http://localhost:3000/api/v1/clients').subscribe(res => {
+		   	   	console.log('projet', res.json().clients);
 		   	   	this.clients = res.json();
 		   	    });
 	        
@@ -47,9 +49,10 @@
 	    }
 	    
 	    onCancel(){
+	    	let id = this._routeParams.get('id');
 	    	//recupere le projet
-	        this._http.get('/test/projet'+this.projet.id +'.json').subscribe(res => {
-		   	   	this.projet = res.json();
+	        this._http.get('http://localhost:3000/api/v1/projet/'+parseInt(id)).subscribe(res => {
+		   	   	this.projet = res.json().projet;
 		   	    });
 	        
 	    	this.editable=false;

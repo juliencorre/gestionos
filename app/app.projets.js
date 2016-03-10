@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', 'angular2/http', './user.singleton'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', 'angular2/http', './user.singleton', './app.menu'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', './user.si
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, http_1, user_singleton_1;
+    var core_1, router_1, http_1, user_singleton_1, app_menu_1;
     var AppProjets;
     return {
         setters:[
@@ -23,6 +23,9 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', './user.si
             },
             function (user_singleton_1_1) {
                 user_singleton_1 = user_singleton_1_1;
+            },
+            function (app_menu_1_1) {
+                app_menu_1 = app_menu_1_1;
             }],
         execute: function() {
             AppProjets = (function () {
@@ -32,8 +35,8 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', './user.si
                     this._http = _http;
                     this._userSingleton = _userSingleton;
                     this.log = '';
-                    this._http.get('/test/projets.json').subscribe(function (res) {
-                        _this.projets = res.json();
+                    this._http.get('http://localhost:3000/api/v1/projets').subscribe(function (res) {
+                        _this.projets = res.json().projets;
                     });
                     console.log('AppProjets');
                     console.log('Token: ' + this._userSingleton.token);
@@ -47,8 +50,8 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', './user.si
                     this._router.navigate(['NouveauProjet']);
                 };
                 AppProjets.prototype.onSelectProjet = function (projet) {
-                    this.log = projet.id.toString();
-                    this._router.navigate(['AppProjet', { id: projet.id }]);
+                    this.log = projet._id.toString();
+                    this._router.navigate(['AppProjet', { id: projet._id }]);
                 };
                 AppProjets.prototype.onSelectClient = function (client) {
                     this.log = client.id.toString();
@@ -56,7 +59,8 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', './user.si
                 };
                 AppProjets = __decorate([
                     core_1.Component({
-                        templateUrl: 'template/app.projets.html'
+                        templateUrl: 'template/app.projets.html',
+                        directives: [app_menu_1.AppMenu]
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, http_1.Http, user_singleton_1.UserSingleton])
                 ], AppProjets);

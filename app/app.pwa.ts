@@ -6,10 +6,12 @@
     import {Tache} 					from './tache';
     import {Pwa} 					from './pwa';
     import {HTTP_PROVIDERS, Http} from 'angular2/http';
-            
+    import {AppMenu} 					from './app.menu';
+    
     @Component({
     	templateUrl: 'template/app.pwa.html',
-    	bindings: [HTTP_PROVIDERS]
+    	bindings: [HTTP_PROVIDERS],
+    	directives: [AppMenu]
     })
     
     export class AppPwa {
@@ -34,8 +36,8 @@
 	    ngOnInit() {
 	    	
 	        //recupere le projet
-	        this._http.get('/test/pwas1.json').subscribe(res => {
-		   	   	this.pwas = res.json();
+	        this._http.get('http://localhost:3000/api/v1/pwa').subscribe(res => {
+		   	   	this.pwas = res.json().pwa;
 		   	    });
 	    	
 	      }

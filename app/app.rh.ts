@@ -4,11 +4,12 @@
     import {Ressource} 				from './ressource';
     import {AppRessourceForm} 		from './app.ressource.form';    
     import {HTTP_PROVIDERS, Http} 	from 'angular2/http';
-            
+    import {AppMenu} 				from './app.menu';
+    
     @Component({
     	templateUrl: 'template/app.rh.html',
     	bindings: [HTTP_PROVIDERS],
-    	directives: [AppRessourceForm]
+    	directives: [AppRessourceForm,AppMenu]
     })
     
     export class AppRh {
@@ -25,11 +26,18 @@
 	   	
 	    ngOnInit() {
 	        
-	        // recupere les ressources de l'entreprise
-	        this._http.get('/test/ressources.json').subscribe(res => {
-		   	   	this.ressources = res.json();
-		   	   	this.log=res.json() ;
-		   	    });
+//	        // recupere les ressources de l'entreprise
+//	        this._http.get('/test/ressources.json').subscribe(res => {
+//		   	   	this.ressources = res.json();
+//		   	   	this.log=res.json() ;
+//		   	    });
+	        
+	       
+	        	 // recupere les ressources de l'entreprise
+		        this._http.get('http://localhost:3000/api/v1/ressources').subscribe(res => {
+			   	   	this.ressources = res.json().ressources;
+			   	   	this.log=res.json() ;
+			   	    });
 	        
 	      }
 	    

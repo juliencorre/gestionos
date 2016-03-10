@@ -4,9 +4,11 @@
   	import {NgForm}		from 'angular2/common';
     import {Client} 	from './client';
     import {Tache} 		from './tache';
+    import {AppMenu} 				from './app.menu';
             
     @Component({
-      templateUrl: 'template/app.nouveau.client.html'
+      templateUrl: 'template/app.nouveau.client.html',
+      directives: [AppMenu]
     })
     
     export class AppNouveauClient {

@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './ressource', './app.ressource.form', 'angular2/http'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', './ressource', './app.ressource.form', 'angular2/http', './app.menu'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/router', './ressource', './app.resso
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, ressource_1, app_ressource_form_1, http_1;
+    var core_1, router_1, ressource_1, app_ressource_form_1, http_1, app_menu_1;
     var AppRh;
     return {
         setters:[
@@ -26,6 +26,9 @@ System.register(['angular2/core', 'angular2/router', './ressource', './app.resso
             },
             function (http_1_1) {
                 http_1 = http_1_1;
+            },
+            function (app_menu_1_1) {
+                app_menu_1 = app_menu_1_1;
             }],
         execute: function() {
             AppRh = (function () {
@@ -38,10 +41,15 @@ System.register(['angular2/core', 'angular2/router', './ressource', './app.resso
                     this.ressource = new ressource_1.Ressource(0, '', '', '', 0, '');
                 }
                 AppRh.prototype.ngOnInit = function () {
+                    //	        // recupere les ressources de l'entreprise
+                    //	        this._http.get('/test/ressources.json').subscribe(res => {
+                    //		   	   	this.ressources = res.json();
+                    //		   	   	this.log=res.json() ;
+                    //		   	    });
                     var _this = this;
                     // recupere les ressources de l'entreprise
-                    this._http.get('/test/ressources.json').subscribe(function (res) {
-                        _this.ressources = res.json();
+                    this._http.get('http://localhost:3000/api/v1/ressources').subscribe(function (res) {
+                        _this.ressources = res.json().ressources;
                         _this.log = res.json();
                     });
                 };
@@ -64,7 +72,7 @@ System.register(['angular2/core', 'angular2/router', './ressource', './app.resso
                     core_1.Component({
                         templateUrl: 'template/app.rh.html',
                         bindings: [http_1.HTTP_PROVIDERS],
-                        directives: [app_ressource_form_1.AppRessourceForm]
+                        directives: [app_ressource_form_1.AppRessourceForm, app_menu_1.AppMenu]
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, router_1.RouteParams, http_1.Http])
                 ], AppRh);

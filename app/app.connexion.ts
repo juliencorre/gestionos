@@ -9,7 +9,7 @@
     
     @Component({
       templateUrl: 'template/app.connexion.html',
-      providers:[AppConnexionService]
+      providers:[AppConnexionService,UserSingleton]
     })
     export class AppConnexion { 
     	data='...';
@@ -36,8 +36,11 @@
 	    success(loginResponse:LoginResponse)
 	    {
 	    	this.ressource=loginResponse.ressource;
-	    	this._userSingleton.token=loginResponse.token;
-	    	console.log(this._userSingleton.token);
+	    	//this._userSingleton.token=loginResponse.token;
+	    	//console.log('userSingletonToken= '+this._userSingleton.token);
+	    	// Save data to sessionStorage
+	    	sessionStorage.setItem('token', loginResponse.token);
+	    	sessionStorage.setItem('username', loginResponse.ressource.nom);
 	    	this._router.navigate(['Projets'] );
 	    };
 	    

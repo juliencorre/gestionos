@@ -4,9 +4,11 @@
     import {Router}		from 'angular2/router';
     import {HTTP_PROVIDERS, Http} from 'angular2/http';
     import {UserSingleton} 				from './user.singleton';
+    import {AppMenu} 					from './app.menu';
     
     @Component({
-      templateUrl: 'template/app.projets.html'
+      templateUrl: 'template/app.projets.html',
+      directives: [AppMenu]
     })
     
     export class AppProjets {
@@ -18,11 +20,11 @@
 				private _http:Http,
 				private _userSingleton:UserSingleton) {
 			
-			 this._http.get('/test/projets.json').subscribe(res => {
-			   	   	this.projets = res.json();
-			   	    });
-			 console.log('AppProjets');
-			 console.log('Token: '+this._userSingleton.token);
+				 this._http.get('http://localhost:3000/api/v1/projets').subscribe(res => {
+				   	   	this.projets = res.json().projets;
+				   	    });
+				 console.log('AppProjets');
+				 console.log('Token: '+this._userSingleton.token);
 			 
 	    }
 		
@@ -37,8 +39,8 @@
 	    }
 	    
 	    onSelectProjet(projet:Projet){
-	    	this.log=projet.id.toString();
-	    	this._router.navigate( ['AppProjet', { id: projet.id }] );
+	    	this.log=projet._id.toString();
+	    	this._router.navigate( ['AppProjet', { id: projet._id }] );
 	    }
 	    
 	    onSelectClient(client:Client){

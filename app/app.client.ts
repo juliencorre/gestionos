@@ -5,10 +5,12 @@
     import {Client} 				from './client';
     import {Tache} 					from './tache';
     import {HTTP_PROVIDERS, Http} from 'angular2/http';
-            
+    import {AppMenu} 					from './app.menu';
+    
     @Component({
     	templateUrl: 'template/app.client.detail.html',
-    	bindings: [HTTP_PROVIDERS]
+    	bindings: [HTTP_PROVIDERS],
+    	directives: [AppMenu]
     })
     
     export class AppClient {
@@ -26,9 +28,14 @@
 	    ngOnInit() {
 	        let id = this._routeParams.get('id');
 	        this.log=id;
-	        this._http.get('/test/client'+parseInt(id)+'.json').subscribe(res => {
-		   	   	this.client = res.json();
-		   	    });
+//	        this._http.get('/test/client'+parseInt(id)+'.json').subscribe(res => {
+//		   	   	this.client = res.json();
+//		   	    });
+	        
+	        
+		        this._http.get('http://localhost:3000/api/v1/client/'+parseInt(id)).subscribe(res => {
+			   	   	this.client = res.json().client;
+			   	    });
 	        
 	      }
 	    

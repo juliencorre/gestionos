@@ -4,8 +4,8 @@ System.register([], function(exports_1) {
         setters:[],
         execute: function() {
             Projet = (function () {
-                function Projet(id, nom, client, avancement, marge) {
-                    this.id = id;
+                function Projet(_id, nom, client, avancement, marge) {
+                    this._id = _id;
                     this.nom = nom;
                     this.client = client;
                     this.avancement = avancement;

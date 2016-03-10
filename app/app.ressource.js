@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './ressource', 'angular2/http', './app.ressource.form'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', './ressource', 'angular2/http', './app.ressource.form', './app.menu'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/router', './ressource', 'angular2/ht
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, ressource_1, http_1, app_ressource_form_1;
+    var core_1, router_1, ressource_1, http_1, app_ressource_form_1, app_menu_1;
     var AppRessource;
     return {
         setters:[
@@ -26,6 +26,9 @@ System.register(['angular2/core', 'angular2/router', './ressource', 'angular2/ht
             },
             function (app_ressource_form_1_1) {
                 app_ressource_form_1 = app_ressource_form_1_1;
+            },
+            function (app_menu_1_1) {
+                app_menu_1 = app_menu_1_1;
             }],
         execute: function() {
             AppRessource = (function () {
@@ -42,8 +45,8 @@ System.register(['angular2/core', 'angular2/router', './ressource', 'angular2/ht
                     var id = this._routeParams.get('id');
                     this.log1 = id;
                     //recupere le projet
-                    this._http.get('/test/ressource' + parseInt(id) + '.json').subscribe(function (res) {
-                        _this.ressource = res.json();
+                    this._http.get('http://localhost:3000/api/v1/ressource/' + parseInt(id)).subscribe(function (res) {
+                        _this.ressource = res.json().ressource;
                     });
                 };
                 AppRessource.prototype.onEdit = function () {
@@ -65,7 +68,7 @@ System.register(['angular2/core', 'angular2/router', './ressource', 'angular2/ht
                     core_1.Component({
                         templateUrl: 'template/app.ressource.html',
                         bindings: [http_1.HTTP_PROVIDERS],
-                        directives: [app_ressource_form_1.AppRessourceForm]
+                        directives: [app_ressource_form_1.AppRessourceForm, app_menu_1.AppMenu]
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, router_1.RouteParams, http_1.Http])
                 ], AppRessource);

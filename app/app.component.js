@@ -55,11 +55,14 @@ System.register(['angular2/core', 'angular2/router', './app.projets', './app.con
             AppComponent = (function () {
                 function AppComponent(_userSingleton) {
                     this._userSingleton = _userSingleton;
+                    this.user = 'test';
+                    this.user = this._userSingleton.token;
+                    this.user = 'cool';
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        templateUrl: 'template/app.menu.html',
+                        templateUrl: 'template/app.html',
                         directives: [router_1.ROUTER_DIRECTIVES],
                         providers: [user_singleton_1.UserSingleton]
                     }),

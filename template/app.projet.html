@@ -1,3 +1,4 @@
+<menu-app></menu-app>
 <p class="bg-info">{{log}}</p>
 <div class="container">
 
@@ -21,7 +22,7 @@
 				  		</thead>
 				  		<tfoot></tfoot>
 				  		<tbody>
-				  			<tr*ngFor="#tache of projet.taches">
+				  			<tr *ngFor="#tache of projet.taches">
 				  				<td><input required [(ngModel)]="tache.nom" type="text" class="form-control"></td>
 				  				<td><input required [(ngModel)]="tache.charge" type="text" class="form-control"></td>
 				  				<td><button type="button" class="close pull-left" aria-label="Close" (click)="onRemoveTache(tache)"><span aria-hidden="true">&times;</span></button></td>

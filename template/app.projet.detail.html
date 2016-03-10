@@ -1,3 +1,4 @@
+<menu-app></menu-app>
 <p class="bg-info">{{log | json}}</p>
 <p class="bg-info">{{projet |json}}</p>
 <div class="container">
@@ -9,11 +10,11 @@
 		</button>
 	<hr>
 		<p>Nom du projet: {{projet.nom}}</p>
-		<p>Id: {{projet.id}}</p>
+		<p>Id: {{projet._id}}</p>
 		<p>Client: {{projet.client.nom}}</p>
 		<strong><u>TACHES</u></strong>
 		<div class="row" *ngFor="#tache of projet.taches">
-			<div class="col-md-1">id: {{tache.id}}</div>
+			<div class="col-md-1">id: {{tache._id}}</div>
 			<div class="col-md-3">nom: {{tache.nom}}</div>
 			<div class="col-md-2">charge: {{tache.charge}}</div>
 		</div>

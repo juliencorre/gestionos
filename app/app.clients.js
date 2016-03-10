@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', 'angular2/http'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', 'angular2/http', './app.menu'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +8,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http'], function(
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, http_1;
+    var core_1, router_1, http_1, app_menu_1;
     var AppClients;
     return {
         setters:[
@@ -20,6 +20,9 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http'], function(
             },
             function (http_1_1) {
                 http_1 = http_1_1;
+            },
+            function (app_menu_1_1) {
+                app_menu_1 = app_menu_1_1;
             }],
         execute: function() {
             AppClients = (function () {
@@ -29,9 +32,9 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http'], function(
                     this._http = _http;
                     this.clients = [];
                     this.log = '';
-                    this._http.get('/test/clients.json').subscribe(function (res) {
-                        console.log('projet', res.json());
-                        _this.clients = res.json();
+                    this._http.get('http://localhost:3000/api/v1/clients').subscribe(function (res) {
+                        console.log('clients', res.json());
+                        _this.clients = res.json().clients;
                     });
                 }
                 AppClients.prototype.onSelectClient = function (client) {
@@ -44,7 +47,8 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http'], function(
                 AppClients = __decorate([
                     core_1.Component({
                         templateUrl: 'template/app.clients.html',
-                        bindings: [http_1.HTTP_PROVIDERS]
+                        bindings: [http_1.HTTP_PROVIDERS],
+                        directives: [app_menu_1.AppMenu]
                     }), 
                     __metadata('design:paramtypes', [router_1.Router, http_1.Http])
                 ], AppClients);

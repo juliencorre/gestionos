@@ -4,11 +4,14 @@
   	import {NgForm}		from 'angular2/common';
     import {Client} 	from './client';
     import {Tache} 		from './tache';
-    import {HTTP_PROVIDERS, Http} 	from 'angular2/http';
+    import {HTTP_BINDINGS,Http, Response,Headers, RequestOptions} 	from 'angular2/http';
+    import {AppMenu} 				from './app.menu';
+    import {ProjetResponse} 		from './model/projet.response';
     
     @Component({
       templateUrl: 'template/app.projet.html',
-      inputs: ['projet']
+      inputs: ['projet'],
+      directives: [AppMenu]
     })
     
     export class AppNouveauProjet {
@@ -18,20 +21,35 @@
     	clients:Client[];
     	index:number=0;
     	
+    	private _Url = 'http://localhost:3000/api/v1/projet/new';
+    	
 	   	constructor(private _router: Router,private _http:Http) { 
 	   		
-	   		this._http.get('/test/clients.json').subscribe(res => {
-		   	   	console.log('projet', res.json());
-		   	   	this.clients = res.json();
+	   		//recupere les clients
+	        this._http.get('http://localhost:3000/api/v1/clients').subscribe(res => {
+		   	   	console.log('projets', res.json().clients);
+		   	   	this.clients = res.json().clients;
 		   	    });
+	        
 	   	}
 		
 	    
 	    onCreationProjet(nouveauProjet:Projet) { 
+	    	console.log(nouveauProjet);
 	    	this.log=nouveauProjet.nom;
-	    	this._router.navigate(['Projets'] );
+	    	
+	    	let body = JSON.stringify({ nouveauProjet });
+		    let headers = new Headers({ 'Content-Type': 'application/json' });
+		    let options = new RequestOptions({ headers: headers });
+		    
+			this._http.post(this._Url, body, options).subscribe(res => {
+				console.log(res.json().projet);
+			});
+	  
+	        
+	        this._router.navigate(['Projets'] );
 	    }
-	    
+		
 	    onAddTache()
 	    {
 	    	this.log='Add tache';

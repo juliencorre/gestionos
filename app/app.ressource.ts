@@ -8,11 +8,12 @@
     import {Role} 					from './role';    
     import {HTTP_PROVIDERS, Http} 	from 'angular2/http';
     import {AppRessourceForm} 		from './app.ressource.form';
+    import {AppMenu} 				from './app.menu';
     
     @Component({
     	templateUrl: 'template/app.ressource.html',
     	bindings: [HTTP_PROVIDERS],
-    	directives: [AppRessourceForm]
+    	directives: [AppRessourceForm,AppMenu]
     })
     
     export class AppRessource {
@@ -31,8 +32,8 @@
 	        this.log1=id;
 	        
 	        //recupere le projet
-	        this._http.get('/test/ressource'+parseInt(id)+'.json').subscribe(res => {
-		   	   	this.ressource = res.json();
+	        this._http.get('http://localhost:3000/api/v1/ressource/'+parseInt(id)).subscribe(res => {
+		   	   	this.ressource = res.json().ressource;
 		   	    });
 	        
 	      }

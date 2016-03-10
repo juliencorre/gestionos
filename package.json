@@ -22,7 +22,8 @@
     "cookie-parser": "1.4.1",
     "body-parser": "1.14.2",
     "ejs": "2.4.1",
-    "jwt-simple": "0.4.1"
+    "jwt-simple": "0.4.1",
+    "mongoose":"4.4.6"
   },
   "devDependencies": {
     "concurrently": "^1.0.0",
