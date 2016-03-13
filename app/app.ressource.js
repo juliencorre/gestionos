@@ -37,7 +37,7 @@ System.register(['angular2/core', 'angular2/router', './ressource', 'angular2/ht
                     this._routeParams = _routeParams;
                     this._http = _http;
                     this.log1 = '';
-                    this.ressource = new ressource_1.Ressource(0, '', '', '', 0, '');
+                    this.ressource = new ressource_1.Ressource('', '', '', '', 0, '');
                     this.editable = false;
                 }
                 AppRessource.prototype.ngOnInit = function () {
@@ -45,7 +45,7 @@ System.register(['angular2/core', 'angular2/router', './ressource', 'angular2/ht
                     var id = this._routeParams.get('id');
                     this.log1 = id;
                     //recupere le projet
-                    this._http.get('http://localhost:3000/api/v1/ressource/' + parseInt(id)).subscribe(function (res) {
+                    this._http.get('http://localhost:3000/api/v1/ressource/' + id).subscribe(function (res) {
                         _this.ressource = res.json().ressource;
                     });
                 };

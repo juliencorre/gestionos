@@ -30,39 +30,38 @@ System.register(['angular2/core', 'angular2/router', './client', 'angular2/http'
         execute: function() {
             AppClient = (function () {
                 function AppClient(_router, _routeParams, _http) {
+                    var _this = this;
                     this._router = _router;
                     this._routeParams = _routeParams;
                     this._http = _http;
-                    this.log = '';
-                    this.client = new client_1.Client(0, '');
+                    this.client = new client_1.Client();
                     this.editable = false;
-                }
-                AppClient.prototype.ngOnInit = function () {
-                    var _this = this;
                     var id = this._routeParams.get('id');
-                    this.log = id;
                     //	        this._http.get('/test/client'+parseInt(id)+'.json').subscribe(res => {
                     //		   	   	this.client = res.json();
                     //		   	    });
-                    this._http.get('http://localhost:3000/api/v1/client/' + parseInt(id)).subscribe(function (res) {
+                    this._http.get('http://localhost:3000/api/v1/client/' + id).subscribe(function (res) {
+                        console.log("client return=" + res.json().client);
                         _this.client = res.json().client;
                     });
+                }
+                AppClient.prototype.ngOnInit = function () {
                 };
                 AppClient.prototype.onEdit = function () {
                     this.editable = true;
-                    this.log = "editable";
+                    console.log("editable");
                 };
                 AppClient.prototype.onCancel = function () {
                     var _this = this;
-                    this._http.get('/test/client' + this.client.id + '.json').subscribe(function (res) {
+                    this._http.get('/test/client' + this.client._id + '.json').subscribe(function (res) {
                         _this.client = res.json();
                     });
                     this.editable = false;
-                    this.log = "not editable";
+                    console.log("not editable");
                 };
                 AppClient.prototype.onEditClient = function (client) {
                     this.editable = false;
-                    this.log = "not editable";
+                    console.log("not editable");
                 };
                 AppClient.prototype.onBack = function () {
                     this._router.navigate(['Clients']);

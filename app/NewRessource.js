@@ -1,21 +1,20 @@
 System.register([], function(exports_1) {
-    var Ressource;
+    var NewRessource;
     return {
         setters:[],
         execute: function() {
-            Ressource = (function () {
-                function Ressource(_id, prenom, nom, mail, salaire, role) {
-                    this._id = _id;
+            NewRessource = (function () {
+                function NewRessource(prenom, nom, mail, salaire, role) {
                     this.prenom = prenom;
                     this.nom = nom;
                     this.mail = mail;
                     this.salaire = salaire;
                     this.role = role;
                 }
-                return Ressource;
+                return NewRessource;
             })();
-            exports_1("Ressource", Ressource);
+            exports_1("NewRessource", NewRessource);
         }
     }
 });
-//# sourceMappingURL=ressource.js.map
+//# sourceMappingURL=NewRessource.js.map

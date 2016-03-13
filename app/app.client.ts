@@ -15,46 +15,48 @@
     
     export class AppClient {
 
-    	log='';
-    	client:Client=new Client(0,'');
+    	client:Client=new Client();
     	
     	 editable=false;
     	 
 	   	constructor(private _router: Router,
 	   				private _routeParams:RouteParams,private _http:Http) { 
 
-				   	}
-	   	
-	    ngOnInit() {
 	        let id = this._routeParams.get('id');
-	        this.log=id;
 //	        this._http.get('/test/client'+parseInt(id)+'.json').subscribe(res => {
 //		   	   	this.client = res.json();
 //		   	    });
 	        
 	        
-		        this._http.get('http://localhost:3000/api/v1/client/'+parseInt(id)).subscribe(res => {
+		        this._http.get('http://localhost:3000/api/v1/client/'+id).subscribe(res => {
+		        	console.log("client return="+res.json().client);
 			   	   	this.client = res.json().client;
+			   	   	
 			   	    });
+		        
+				   	}
+	   	
+	    ngOnInit() {
+
 	        
 	      }
 	    
 	    onEdit(){
         	this.editable=true;
-	    	this.log="editable";
+	    	console.log("editable");
         }
         
         onCancel(){
-        	this._http.get('/test/client'+this.client.id+'.json').subscribe(res => {
+        	this._http.get('/test/client'+this.client._id+'.json').subscribe(res => {
 		   	   	this.client = res.json();
 		   	    });
         	this.editable=false;
-	    	this.log="not editable";
+        	console.log("not editable");
         }
         
         onEditClient(client:Client){
         	this.editable=false;
-	    	this.log="not editable";
+        	console.log("not editable");
         }
         
 	    onBack(){

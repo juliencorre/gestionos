@@ -1,3 +1,4 @@
+ {{diagnostic}}
 <menu-app></menu-app>
 <p class="bg-info">{{log}}</p>
 <div class="container">
@@ -6,9 +7,11 @@
 					<div class="form-group">
 					    <input required [(ngModel)]="projet.nom" type="text" class="form-control" placeholder="Nom du projet">
 				  	</div>
+				  	{{projet | json}}
+				  	{{selectedClientId}}
 				  	<div class="form-group">
-					    <select class="form-control">
-						  <option  *ngFor="#client of clients">{{client.nom}}</option>
+					    <select class="form-control" [(ngModel)]="projet.client_id">
+						  <option  *ngFor="#client of clients" [value]="client._id">{{client.nom}}</option>
 						</select>
 				  	</div>
 				  	<p>Taches</p>

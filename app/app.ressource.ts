@@ -19,7 +19,7 @@
     export class AppRessource {
 
     	log1='';
-    	ressource:Ressource=new Ressource(0,'','','',0,'');
+    	ressource:Ressource=new Ressource('','','','',0,'');
     	
     	editable=false;
     	
@@ -32,7 +32,7 @@
 	        this.log1=id;
 	        
 	        //recupere le projet
-	        this._http.get('http://localhost:3000/api/v1/ressource/'+parseInt(id)).subscribe(res => {
+	        this._http.get('http://localhost:3000/api/v1/ressource/'+id).subscribe(res => {
 		   	   	this.ressource = res.json().ressource;
 		   	    });
 	        

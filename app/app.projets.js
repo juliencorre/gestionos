@@ -50,12 +50,12 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', './user.si
                     this._router.navigate(['NouveauProjet']);
                 };
                 AppProjets.prototype.onSelectProjet = function (projet) {
-                    this.log = projet._id.toString();
+                    this.log = projet._id;
                     this._router.navigate(['AppProjet', { id: projet._id }]);
                 };
-                AppProjets.prototype.onSelectClient = function (client) {
-                    this.log = client.id.toString();
-                    this._router.navigate(['AppClient', { id: client.id }]);
+                AppProjets.prototype.onSelectClient = function (client_id) {
+                    this.log = client_id;
+                    this._router.navigate(['AppClient', { id: client_id }]);
                 };
                 AppProjets = __decorate([
                     core_1.Component({

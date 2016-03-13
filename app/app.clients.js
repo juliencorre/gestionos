@@ -30,7 +30,6 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', './app.men
                     var _this = this;
                     this._router = _router;
                     this._http = _http;
-                    this.clients = [];
                     this.log = '';
                     this._http.get('http://localhost:3000/api/v1/clients').subscribe(function (res) {
                         console.log('clients', res.json());
@@ -38,7 +37,7 @@ System.register(['angular2/core', 'angular2/router', 'angular2/http', './app.men
                     });
                 }
                 AppClients.prototype.onSelectClient = function (client) {
-                    this._router.navigate(['AppClient', { id: client.id }]);
+                    this._router.navigate(['AppClient', { id: client._id }]);
                 };
                 AppClients.prototype.onClick = function () {
                     this.log = 'click';

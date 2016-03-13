@@ -20,7 +20,7 @@
 			<tbody>
 				<tr *ngFor="#ressource of ressources"
 					(click)="onSelectRessource(ressource)">
-					<!--td>{{client.id}}</td-->
+					<!--td>{{client._id}}</td-->
 					<td>{{ressource.prenom}}</td>
 					<td>{{ressource.nom}}</td>
 					<td>{{ressource.mail}}</td>
@@ -31,7 +31,7 @@
 	</div>
 	<div *ngIf="isNewRessource">
 		<ressource-form [ressource]="ressource"
-			(editRessource)="onSaved($event)" (cancel)="onCancel($event)">
+			(editRessource)="onEditRessource($event)" (cancel)="onCancel($event)">
 		</ressource-form>
 	</div>
 </div>

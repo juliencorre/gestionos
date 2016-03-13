@@ -1,5 +1,5 @@
     import {Component} 	from 'angular2/core';
-    import {Projet}		from './projet';
+    import {NouveauProjet}		from './nouveauProjet';
     import {Router}		from 'angular2/router';
   	import {NgForm}		from 'angular2/common';
     import {Client} 	from './client';
@@ -17,28 +17,32 @@
     export class AppNouveauProjet {
 
     	log='';
-		projet:Projet=new Projet(0,'',new Client(0,''),0,0);
+    	projet:NouveauProjet=new NouveauProjet('','',0,0);
     	clients:Client[];
     	index:number=0;
     	
     	private _Url = 'http://localhost:3000/api/v1/projet/new';
     	
 	   	constructor(private _router: Router,private _http:Http) { 
-	   		
-	   		//recupere les clients
+	   	//recupere les clients
 	        this._http.get('http://localhost:3000/api/v1/clients').subscribe(res => {
 		   	   	console.log('projets', res.json().clients);
 		   	   	this.clients = res.json().clients;
+		   	   	this.projet.client_id=this.clients[0]._id;
 		   	    });
-	        
+	   	}
+	   	
+	   	ngOnInit() {
+	   	
 	   	}
 		
 	    
-	    onCreationProjet(nouveauProjet:Projet) { 
+	    onCreationProjet(nouveauProjet:NouveauProjet) { 
 	    	console.log(nouveauProjet);
-	    	this.log=nouveauProjet.nom;
+	    	console.log(nouveauProjet.client_id);
 	    	
 	    	let body = JSON.stringify({ nouveauProjet });
+	    	console.log(body);
 		    let headers = new Headers({ 'Content-Type': 'application/json' });
 		    let options = new RequestOptions({ headers: headers });
 		    
@@ -59,7 +63,7 @@
 	    
 	    onRemoveTache(tache:Tache)
 	    {
-	    	this.log='Remove tache:'+tache.id;
+	    	this.log='Remove tache:'+tache._id;
 	    	var removeIndex = this.projet.taches.indexOf(tache);
 	    	if (removeIndex > -1) {
 	    		this.projet.taches.splice(removeIndex, 1);

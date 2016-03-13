@@ -27,6 +27,7 @@ System.register(['angular2/core', 'angular2/router', './ressource', 'angular2/ht
         execute: function() {
             AppRessourceForm = (function () {
                 function AppRessourceForm(_router, _routeParams, _http) {
+                    //recupere les clients
                     var _this = this;
                     this._router = _router;
                     this._routeParams = _routeParams;
@@ -34,23 +35,26 @@ System.register(['angular2/core', 'angular2/router', './ressource', 'angular2/ht
                     this.editRessource = new core_1.EventEmitter();
                     this.cancel = new core_1.EventEmitter();
                     this.log = '';
-                    //recupere les clients
                     this._http.get('/test/roles.json').subscribe(function (res) {
-                        console.log('roles', res.json());
+                        console.log('roles' + res.json());
                         _this.roles = res.json();
                     });
                 }
                 AppRessourceForm.prototype.onCancel = function () {
                     var _this = this;
                     //recupere le projet
-                    this._http.get('/test/ressource' + this.ressource.id + '.json').subscribe(function (res) {
-                        _this.ressource = res.json();
+                    //recupere le projet
+                    this._http.get('http://localhost:3000/api/v1/ressource/' + this.ressource._id).subscribe(function (res) {
+                        _this.ressource = res.json().ressource;
                     });
-                    this.log = "onCancel form";
+                    //	        this._http.get('/test/ressource'+this.ressource._id +'.json').subscribe(res => {
+                    //		   	   	this.ressource = res.json();
+                    //		   	    });
+                    console.log("onCancel form");
                     this.cancel.next(this.ressource);
                 };
                 AppRessourceForm.prototype.onEditRessource = function () {
-                    this.log = "onEditRessource form";
+                    console.log("onEditRessource form");
                     this.editRessource.next(this.ressource);
                 };
                 __decorate([

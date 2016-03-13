@@ -5,6 +5,7 @@
     import {Client} 				from './client';
     import {Tache} 					from './tache';
     import {Ressource} 				from './ressource';
+    import {NewRessource} 				from './newRessource';    
     import {Role} 					from './role';    
     import {HTTP_PROVIDERS, Http} 	from 'angular2/http';
             
@@ -28,24 +29,30 @@
 	   	constructor(private _router: Router,
 	   				private _routeParams:RouteParams,private _http:Http) { 
 	   	 //recupere les clients
+	        
 	        this._http.get('/test/roles.json').subscribe(res => {
-		   	   	console.log('roles', res.json());
+	        	console.log('roles'+ res.json());
 		   	   	this.roles = res.json();
 		   	    });
 	   	}
 	    
 	    onCancel(){
 	    	//recupere le projet
-	        this._http.get('/test/ressource'+this.ressource.id +'.json').subscribe(res => {
-		   	   	this.ressource = res.json();
+	    	  //recupere le projet
+	        this._http.get('http://localhost:3000/api/v1/ressource/'+this.ressource._id).subscribe(res => {
+		   	   	this.ressource = res.json().ressource;
 		   	    });
+	    	
+//	        this._http.get('/test/ressource'+this.ressource._id +'.json').subscribe(res => {
+//		   	   	this.ressource = res.json();
+//		   	    });
 	        
-	    	this.log="onCancel form";
+	        console.log("onCancel form");
 	    	this.cancel.next(this.ressource);
 	    }
 	    
 	    onEditRessource(){
-	    	this.log="onEditRessource form";
+	    	console.log("onEditRessource form");
 	    	this.editRessource.next(this.ressource);
 	    }
 	}

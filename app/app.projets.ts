@@ -39,13 +39,13 @@
 	    }
 	    
 	    onSelectProjet(projet:Projet){
-	    	this.log=projet._id.toString();
+	    	this.log=projet._id;
 	    	this._router.navigate( ['AppProjet', { id: projet._id }] );
 	    }
 	    
-	    onSelectClient(client:Client){
-	    	this.log=client.id.toString();
-	    	this._router.navigate( ['AppClient', { id: client.id }] );
+	    onSelectClient(client_id:string){
+	    	this.log=client_id;
+	    	this._router.navigate( ['AppClient', { id: client_id }] );
 	    }
 
 	}

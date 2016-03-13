@@ -9,14 +9,29 @@ var mongoose = 		require('mongoose');
 
 var ProjetSchema = mongoose.Schema({
 	nom: String, 
-	client: {nom: String }, 
+	client_id : String, 
 	avancement: Number, 
 	marge: Number, 
-	taches: [{ nom: String,charge:Number }] 
+	taches: [{_id:Number, nom: String,charge:Number }] 
 });
 
 var ProjetModel = mongoose.model('projet', ProjetSchema);
 
+var ClientSchema = mongoose.Schema({
+	nom: String
+});
+
+var ClientModel = mongoose.model('client', ClientSchema);
+
+var RessourceSchema = mongoose.Schema({
+	prenom: String,
+	nom: String,
+	mail:String,
+	salaire:Number,
+	role:String	
+});
+
+var RessourceModel = mongoose.model('ressource', RessourceSchema);
 /////////////////////////////////////////////
 
 
@@ -43,7 +58,7 @@ router.post('/login', function(req, res) {
 	        token: token,
 	        decoded: decoded,
 	        ressource: {
-	        	id:7,
+	        	_id:7,
 	        	prenom:'julien',
 	        	nom:'corre',
 	        	mail:'jcorre@gmail.com',
@@ -93,35 +108,6 @@ router.get('/projets', function(req, res, next) {
 		        token: "",
 		        decoded: "",
 		        projets:projets
-//		        projets: 
-//		        	[
-//		        		{ 
-//		        			"id": 1, 
-//		        			"nom": "gestionos", 
-//		        			"client": { "id": 1, "nom": "arnaud attagnant" }, 
-//		        			"avancement": 1, 
-//		        			"marge": 0, 
-//		        			"taches": [ 
-//		        			            { "id": 1, "nom": "creation projet","charge":2.5 }, 
-//		        			            { "id": 2, "nom": "affichage projet","charge":2.5 } 
-//		        			          ] 
-//		        		},
-//		        		{ 
-//		        			"id": 2, 
-//		        			"nom": "kstudio", 
-//		        			"client": { "id": 2, "nom": "julien corre" }, 
-//		        			"avancement": 1, 
-//		        			"marge": 0, 
-//		        			"taches": [ 
-//		        			            { "id": 1, "nom": "OK","charge":2.5 }, 
-//		        			            { "id": 2, "nom": "tache1","charge":2.5 },
-//		        			            { "id": 3, "nom": "tache2","charge":2.5 },
-//		        			            { "id": 4, "nom": "tache3","charge":2.5 },
-//		        			            { "id": 5, "nom": "tache4","charge":2.5}
-//		        			            
-//		        			          ] 
-//		        		}
-//		        	]
 		      });
 			
 		});
@@ -132,75 +118,8 @@ router.get('/projets', function(req, res, next) {
 router.get('/projet/:id', function(req, res) {
 	
 	var id=req.params.id;
-	var projet;
 	console.log('projet:'+id);
-	
-//	switch(id) {
-//    case 1 :
-//    	 projet={ 
-//			    	"id": 1, 
-//			    	"nom": "gestionos", 
-//			    	"client": { "id": 1, "nom": "arnaud attagnant" }, 
-//			    	"avancement": 1, 
-//			    	"marge": 0, 
-//			    	"taches": [ 
-//			    	            { "id": 1, "nom": "creation projet","charge":2.5 }, 
-//			    	            { "id": 2, "nom": "affichage projet","charge":3 } 
-//			    	          ] 
-//			    };
-//        break;
-//    case 2 :
-//	        projet={ 
-//	        	"id": 2, 
-//	        	"nom": "kstudio", 
-//	        	"client": { "id": 2, "nom": "julien corre" }, 
-//	        	"avancement": 1, 
-//	        	"marge": 0, 
-//	        	"taches": [ 
-//	        	            { "id": 1, "nom": "OK","charge":2.5 }, 
-//	        	            { "id": 2, "nom": "tache1","charge":1 },
-//	        	            { "id": 3, "nom": "tache2","charge":2 },
-//	        	            { "id": 4, "nom": "tache3","charge":2.5 },
-//	        	            { "id": 5, "nom": "tache4","charge":5 }
-//	        	            
-//	        	          ] 
-//	        };
-//        break;
-//	}; 
-	
-	
-	 projet={ 
-		    	"id": 1, 
-		    	"nom": "gestionos", 
-		    	"client": { "id": 1, "nom": "arnaud attagnant" }, 
-		    	"avancement": 1, 
-		    	"marge": 0, 
-		    	"taches": [ 
-		    	            { "id": 1, "nom": "creation projet","charge":2.5 }, 
-		    	            { "id": 2, "nom": "affichage projet","charge":3 } 
-		    	          ] 
-		    };
-			 
-	console.log('projet:'+projet);
-	res.json({
-        success: true,
-        message: 'Enjoy your token!',
-        token: "",
-        decoded: "",
-        projet: projet
-        
-      });
 
-
-});
-
-/* Racine de api */
-router.post('/projet/new', function(req, res) {
-	console.log('nouveau projet');
-
-	// nom passé en paramètre
-	var nouveauProjet= req.body.nouveauProjet;
-	console.log('projet = '+nouveauProjet);
 	
 	//On se connecte à la base de données
 	//N'oubliez pas de lancer ~/mongodb/bin/mongod dans un terminal !
@@ -208,9 +127,46 @@ router.post('/projet/new', function(req, res) {
 	if (err) { throw err; }
 	});
 	
+	// find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
+	ProjetModel.findOne({ '_id': id }, function (err, projet) {
+	  if (err) return handleError(err);
+	  console.log(projet);
+	  
+		// On se déconnecte de MongoDB maintenant
+	  mongoose.connection.close();
+	  
+		res.json({
+	        success: true,
+	        message: 'Enjoy your token!',
+	        token: "",
+	        decoded: "",
+	        projet:projet
+	      });
+		
+	});
+
+});
+
+/* PROJET NEW */
+router.post('/projet/new', function(req, res) {
+	console.log('nouveau projet');
+	 
+	// nom passé en paramètre
+	var nouveauProjet= req.body.nouveauProjet;
+
+	//On se connecte à la base de données
+	//N'oubliez pas de lancer ~/mongodb/bin/mongod dans un terminal !
+	mongoose.connect('mongodb://localhost/test', function(err) {
+	if (err) {
+		// On se déconnecte de MongoDB maintenant
+		  mongoose.connection.close();
+		  throw err; 
+		  }
+	});
+	
 	var projetInstance = new ProjetModel(nouveauProjet);
 	
-	projetInstance.save({$inc: { id: 1}},function (err) {
+	projetInstance.save(function (err) {
 		  if (err) { throw err; }
 		  console.log('projet ajouté avec success !');
 		  console.log(projetInstance);
@@ -231,81 +187,270 @@ router.post('/projet/new', function(req, res) {
 
 /* RESSOURCES */
 router.get('/ressources', function(req, res, next) {
-	console.log('liste des ressources');
+//	console.log('liste des ressources');
+//	
+//	var ressources=[ 
+//	        		{ "_id": 1, "prenom": "julien", "nom": "corre", "mail": "jcorre@gmail.com", "salaire": "2000", "role": "developpeur" }, 
+//	        		{ "_id": 2, "prenom": "arnaud", "nom": "Attagnant", "mail": "aattagnant@gmail.com", "salaire": "3000", "role": "directeur" } 
+//	        	];
+//		
+//		res.json({
+//	        success: true,
+//	        message: 'Enjoy your token!',
+//	        token: "",
+//	        decoded: "",
+//	        ressources:ressources
+//	      });
+
+		
+		console.log('liste des ressources');
+		
+		//On se connecte à la base de données
+		//N'oubliez pas de lancer ~/mongodb/bin/mongod dans un terminal !
+		mongoose.connect('mongodb://localhost/test', function(err) {
+		if (err) { throw err; }
+		});
+		
+		RessourceModel.find(null, function (err, comms) {
+			  if (err) { throw err; }
+			  // comms est un tableau de hash
+			  console.log(comms);
+			  var ressources=comms;
+			// On se déconnecte de MongoDB maintenant
+			  mongoose.connection.close();
+			  
+			  
+				console.log("ressources = "+ressources);
+				
+				res.json({
+			        success: true,
+			        message: 'Enjoy your token!',
+			        token: "",
+			        decoded: "",
+			        ressources:ressources
+			      });
+				
+			});
+		
+});
+
+/* RESSOURCE X */
+router.get('/ressource/:id', function(req, res) {
 	
-	var ressources=[ 
-	        		{ "id": 1, "prenom": "julien", "nom": "corre", "mail": "jcorre@gmail.com", "salaire": "2000", "role": "developpeur" }, 
-	        		{ "id": 2, "prenom": "arnaud", "nom": "Attagnant", "mail": "aattagnant@gmail.com", "salaire": "3000", "role": "directeur" } 
-	        	];
+//	var id=req.params.id;
+//	console.log('ressource:'+id);
+//	
+//	var ressource={ "_id": 1, "prenom": "julien", "nom": "corre", "mail": "jcorre@gmail.com", "salaire": "2000", "role": "developpeur" };
+//	
+//		res.json({
+//	        success: true,
+//	        message: 'Enjoy your token!',
+//	        token: "",
+//	        decoded: "",
+//	        ressource: ressource 
+//	      });
+
+		
+		var id=req.params.id;
+		console.log('ressource:'+id);
+
+		
+		//On se connecte à la base de données
+		//N'oubliez pas de lancer ~/mongodb/bin/mongod dans un terminal !
+		mongoose.connect('mongodb://localhost/test', function(err) {
+		if (err) { throw err; }
+		});
+		
+		// find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
+		RessourceModel.findOne({ '_id': id }, function (err, ressource) {
+		  if (err) return handleError(err);
+		  console.log(ressource);
+		  
+			// On se déconnecte de MongoDB maintenant
+		  mongoose.connection.close();
+		  
+			res.json({
+		        success: true,
+		        message: 'Enjoy your token!',
+		        token: "",
+		        decoded: "",
+		        ressource:ressource
+		      });
+			
+		});
+		
+});
+
+/* RESSOURCES NEW */
+router.post('/ressource/new', function(req, res) {
+	console.log('nouvelle ressource');
+	 
+	// nom passé en paramètre
+	var newRessource= req.body.newRessource;
+	
+	console.log(newRessource);
+
+	//On se connecte à la base de données
+	//N'oubliez pas de lancer ~/mongodb/bin/mongod dans un terminal !
+	mongoose.connect('mongodb://localhost/test', function(err) {
+	if (err) {
+		// On se déconnecte de MongoDB maintenant
+		  mongoose.connection.close();
+		  throw err; 
+		  }
+	});
+	
+	var ressourceInstance = new RessourceModel(newRessource);
+	
+	ressourceInstance.save(function (err) {
+		  if (err) { throw err; }
+		  console.log('ressource ajoutée avec success !');
+		  console.log(ressourceInstance);
+		  // On se déconnecte de MongoDB maintenant
+		  mongoose.connection.close();
+		});
+	
 		
 		res.json({
 	        success: true,
 	        message: 'Enjoy your token!',
-	        token: "",
-	        decoded: "",
-	        ressources:ressources
-	      });
-
-});
-
-/* RESSOURCES */
-router.get('/ressource/:id', function(req, res) {
-	
-	var id=req.params.id;
-	console.log('ressource:'+id);
-	
-	var ressource={ "id": 1, "prenom": "julien", "nom": "corre", "mail": "jcorre@gmail.com", "salaire": "2000", "role": "developpeur" };
-	
-		res.json({
-	        success: true,
-	        message: 'Enjoy your token!',
-	        token: "",
-	        decoded: "",
-	        ressource: ressource 
+	        token: '',
+	        decoded: '',
+	        ressource: newRessource
 	      });
 
 });
 
 /* CLIENTS */
 router.get('/clients', function(req, res, next) {
-	console.log('liste des ressources');
 	
+	console.log('liste des clients');
 	
-		
-		res.json({
-	        success: true,
-	        message: 'Enjoy your token!',
-	        token: "",
-	        decoded: "",
-	        clients: 
-	        	[ 
-	        		{ "id": 1, "nom": "arnaud attagnant" }, 
-	        		{ "id": 2, "nom": "julien corre" }
-	        	]
-	      });
-
+	//On se connecte à la base de données
+	//N'oubliez pas de lancer ~/mongodb/bin/mongod dans un terminal !
+	mongoose.connect('mongodb://localhost/test', function(err) {
+	if (err) { throw err; }
+	});
+	
+	ClientModel.find(null, function (err, comms) {
+		  if (err) { throw err; }
+		  // comms est un tableau de hash
+		  console.log(comms);
+		  var clients=comms;
+		// On se déconnecte de MongoDB maintenant
+		  mongoose.connection.close();
+		  
+		  
+			console.log("Clients = "+clients);
+			
+			res.json({
+		        success: true,
+		        message: 'Enjoy your token!',
+		        token: "",
+		        decoded: "",
+		        clients:clients
+		      });
+			
+		});
 });
 
 /* CLIENT X */
 router.get('/client/:id', function(req, res) {
 	
 	var id=req.params.id;
-	var client;
 	console.log('client:'+id);
-	
-	
-	 client={ "id": 1, "nom": "arnaud attagnant" };
-			 
-	console.log('client:'+client);
-	res.json({
-        success: true,
-        message: 'Enjoy your token!',
-        token: "",
-        decoded: "",
-        client: client
-        
-      });
 
+	//On se connecte à la base de données
+	//N'oubliez pas de lancer ~/mongodb/bin/mongod dans un terminal !
+	mongoose.connect('mongodb://localhost/test', function(err) {
+	if (err) { throw err; }
+	});
+	
+	// find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
+	ClientModel.findOne({ '_id': id }, function (err, client) {
+	  if (err) return handleError(err);
+	  console.log(client);
+	  
+		// On se déconnecte de MongoDB maintenant
+	  mongoose.connection.close();
+	  
+		res.json({
+	        success: true,
+	        message: 'Enjoy your token!',
+	        token: "",
+	        decoded: "",
+	        client:client
+	      });
+		
+	});
+	
+
+			
+
+//	//On se connecte à la base de données
+//	//N'oubliez pas de lancer ~/mongodb/bin/mongod dans un terminal !
+//	mongoose.connect('mongodb://localhost/test', function(err) {
+//	if (err) { throw err; }
+//	});
+//	
+//	ClientModel.find({ '_id': id }, function (err, comms) {
+//		  if (err) { throw err; }
+//		  // comms est un tableau de hash
+//		  console.log('comms='+comms);
+//		  var client=comms;
+//		// On se déconnecte de MongoDB maintenant
+//		  mongoose.connection.close();
+//		  
+//		  
+//			console.log("Client = "+client);
+//			
+//			res.json({
+//		        success: true,
+//		        message: 'Enjoy your token!',
+//		        token: "",
+//		        decoded: "",
+//		        client:client
+//		      });
+//			
+//		});
+
+
+});
+
+/* Racine de api */
+router.post('/client/new', function(req, res) {
+	console.log('nouveau client');
+	 
+	// nom passé en paramètre
+	var nouveauClient= req.body.nouveauClient;
+	//On se connecte à la base de données
+	//N'oubliez pas de lancer ~/mongodb/bin/mongod dans un terminal !
+	mongoose.connect('mongodb://localhost/test', function(err) {
+	if (err) {
+		// On se déconnecte de MongoDB maintenant
+		  mongoose.connection.close();
+		  throw err; 
+		  }
+	});
+	
+	var clientInstance = new ClientModel(nouveauClient);
+	
+	clientInstance.save(function (err) {
+		  if (err) { throw err; }
+		  console.log('client ajouté avec success !');
+		  console.log(clientInstance);
+		  // On se déconnecte de MongoDB maintenant
+		  mongoose.connection.close();
+		});
+	
+		
+		res.json({
+	        success: true,
+	        message: 'Enjoy your token!',
+	        token: '',
+	        decoded: '',
+	        client: nouveauClient
+	      });
 
 });
 

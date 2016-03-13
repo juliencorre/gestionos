@@ -1,6 +1,5 @@
-    export class Ressource {
+    export class NewRessource {
       constructor(
-      	public _id:string,
       	public prenom:string,
       	public nom:string,
         public mail:string,

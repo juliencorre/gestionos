@@ -4,9 +4,7 @@ System.register([], function(exports_1) {
         setters:[],
         execute: function() {
             Client = (function () {
-                function Client(id, nom) {
-                    this.id = id;
-                    this.nom = nom;
+                function Client() {
                 }
                 return Client;
             })();

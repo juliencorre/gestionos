@@ -1,12 +1,10 @@
     import {Tache} 	from './tache';
-    import {Client} from './client';
     
-    export class Projet {
+    export class NouveauProjet {
     
     public taches:Tache[]=[];
     
       constructor(
-      	public _id:string,
         public nom:string,
         public client_id:string,
         public avancement:number,
@@ -15,5 +13,6 @@
         setTaches(p_taches:Tache[]){
         	this.taches=p_taches;
          }
+
         
     }

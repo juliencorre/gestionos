@@ -16,7 +16,7 @@
 	<div>
 	<ressource-form *ngIf="editable" 
 		[ressource]="ressource"
-		(editRessource)="onSaved($event)"
+		(editRessource)="onEditRessource($event)"
         (cancel)="onCancel($event)" >
 	</ressource-form>
 		<!--form *ngIf="editable" (ngSubmit)="onEditRessource(ressource)"

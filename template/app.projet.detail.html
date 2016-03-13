@@ -11,7 +11,7 @@
 	<hr>
 		<p>Nom du projet: {{projet.nom}}</p>
 		<p>Id: {{projet._id}}</p>
-		<p>Client: {{projet.client.nom}}</p>
+		<p>Client: {{projet.client_id}}</p>
 		<strong><u>TACHES</u></strong>
 		<div class="row" *ngFor="#tache of projet.taches">
 			<div class="col-md-1">id: {{tache._id}}</div>
@@ -27,7 +27,7 @@
 				  	</div>
 				  	<div class="form-group">
 					    <select class="form-control">
-						  <option  *ngFor="#client of clients" [value]="client.id">{{client.nom}}</option>
+						  <option  *ngFor="#client of clients" [value]="client._id">{{client.nom}}</option>
 						</select>
 				  	</div>
 				  	<p>Taches</p>

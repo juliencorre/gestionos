@@ -4,8 +4,8 @@ System.register([], function(exports_1) {
         setters:[],
         execute: function() {
             Tache = (function () {
-                function Tache(id, nom, charge, activites) {
-                    this.id = id;
+                function Tache(_id, nom, charge, activites) {
+                    this._id = _id;
                     this.nom = nom;
                     this.charge = charge;
                     this.activites = activites;

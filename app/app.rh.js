@@ -38,7 +38,8 @@ System.register(['angular2/core', 'angular2/router', './ressource', './app.resso
                     this._http = _http;
                     this.log = '';
                     this.isNewRessource = false;
-                    this.ressource = new ressource_1.Ressource(0, '', '', '', 0, '');
+                    this.ressource = new ressource_1.Ressource('', '', '', '', 0, '');
+                    this._Url = 'http://localhost:3000/api/v1/ressource/new';
                 }
                 AppRh.prototype.ngOnInit = function () {
                     //	        // recupere les ressources de l'entreprise
@@ -54,18 +55,34 @@ System.register(['angular2/core', 'angular2/router', './ressource', './app.resso
                     });
                 };
                 AppRh.prototype.onSelectRessource = function (ressource) {
-                    this._router.navigate(['AppRessource', { id: ressource.id }]);
+                    this._router.navigate(['AppRessource', { id: ressource._id }]);
                 };
                 AppRh.prototype.onClick = function () {
                     this.isNewRessource = true;
-                    this.log = "isNewRessource true";
+                    console.log("isNewRessource true");
                 };
                 AppRh.prototype.onCancel = function (ressource) {
-                    this.log = "onCancel";
+                    console.log("onCancel");
                     this.isNewRessource = false;
                 };
-                AppRh.prototype.onSaved = function (ressource) {
-                    this.log = "onSaved";
+                // TODO: m:odifier nom
+                AppRh.prototype.onEditRessource = function (newRessource) {
+                    var _this = this;
+                    console.log("onSaved:" + newRessource);
+                    newRessource._id = null;
+                    var body = JSON.stringify({ newRessource: newRessource });
+                    console.log(body);
+                    var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+                    var options = new http_1.RequestOptions({ headers: headers });
+                    this._http.post(this._Url, body, options).subscribe(function (res) {
+                        console.log(res.json().ressource);
+                        // recupere les ressources de l'entreprise
+                        _this._http.get('http://localhost:3000/api/v1/ressources').subscribe(function (res) {
+                            _this.ressources = res.json().ressources;
+                            _this.log = res.json();
+                        });
+                    });
+                    this._router.navigate(['Rh']);
                     this.isNewRessource = false;
                 };
                 AppRh = __decorate([

@@ -36,29 +36,30 @@ System.register(['angular2/core', './projet', 'angular2/router', './client', './
         execute: function() {
             AppProjet = (function () {
                 function AppProjet(_router, _routeParams, _http) {
+                    var _this = this;
                     this._router = _router;
                     this._routeParams = _routeParams;
                     this._http = _http;
                     this.log = '';
-                    this.projet = new projet_1.Projet(0, '', new client_1.Client(0, ''), 0, 0);
-                    this.clients = [];
+                    this.projet = new projet_1.Projet('', '', new client_1.Client(), 0, 0);
+                    this.clients = null;
                     this.editable = false;
-                }
-                AppProjet.prototype.ngOnInit = function () {
-                    var _this = this;
                     var id = this._routeParams.get('id');
                     this.log = id;
                     //recupere le projet
-                    this._http.get('http://localhost:3000/api/v1/projet/' + parseInt(id)).subscribe(function (res) {
+                    this._http.get('http://localhost:3000/api/v1/projet/' + id).subscribe(function (res) {
                         _this.projet = res.json().projet;
                     });
-                    //recupere les clients
-                    this._http.get('http://localhost:3000/api/v1/clients').subscribe(function (res) {
-                        console.log('projet', res.json().clients);
-                        _this.clients = res.json();
-                    });
+                }
+                AppProjet.prototype.ngOnInit = function () {
                 };
                 AppProjet.prototype.onEdit = function () {
+                    var _this = this;
+                    //recupere les clients
+                    this._http.get('http://localhost:3000/api/v1/clients').subscribe(function (res) {
+                        console.log('clients', res.json().clients);
+                        _this.clients = res.json().clients;
+                    });
                     this.editable = true;
                     this.log = "editable";
                 };
@@ -66,7 +67,7 @@ System.register(['angular2/core', './projet', 'angular2/router', './client', './
                     var _this = this;
                     var id = this._routeParams.get('id');
                     //recupere le projet
-                    this._http.get('http://localhost:3000/api/v1/projet/' + parseInt(id)).subscribe(function (res) {
+                    this._http.get('http://localhost:3000/api/v1/projet/' + id).subscribe(function (res) {
                         _this.projet = res.json().projet;
                     });
                     this.editable = false;
@@ -78,10 +79,10 @@ System.register(['angular2/core', './projet', 'angular2/router', './client', './
                 };
                 AppProjet.prototype.onAddTache = function () {
                     this.log = 'Add tache';
-                    this.projet.taches.push(new tache_1.Tache(0, ''));
+                    this.projet.taches.push(new tache_1.Tache('', '', 0, null));
                 };
                 AppProjet.prototype.onRemoveTache = function (tache) {
-                    this.log = 'Remove tache:' + tache.id;
+                    this.log = 'Remove tache:' + tache._id;
                     var removeIndex = this.projet.taches.indexOf(tache);
                     if (removeIndex > -1) {
                         this.projet.taches.splice(removeIndex, 1);

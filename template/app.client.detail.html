@@ -1,12 +1,11 @@
 <menu-app></menu-app>
-<p class="bg-info">{{log}}</p>
 <div class="container">
 	<div *ngIf="!editable" >
 		<button (click)="onBack()" type="button" class="btn btn-default btn-xs">
 		  <span class="glyphicon glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Retour
 		</button>
 		<hr>
-		<div class="col-md-12">Id: {{client.id}}</div>
+		<div class="col-md-12">Id: {{client._id}}</div>
 		<div class="col-md-12">Nom du client: {{client.nom}}</div>
 		<div><button class="btn btn-primary btn-xs" (click)="onEdit()">Modifier</button></div>
 	</div>

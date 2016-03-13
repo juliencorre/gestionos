@@ -2,7 +2,7 @@
         
     export class Tache {
       constructor(
-        public id:number,
+        public _id:string,
         public nom:string,
         public charge:number,
         public activites:Activite[]) { }

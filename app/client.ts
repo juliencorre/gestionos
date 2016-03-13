@@ -1,6 +1,7 @@
     export class Client {
     
-      constructor(
-        public id:number,
-        public nom:string) { }
+    	public _id:string;
+        public nom:string;
+        
+      constructor() { }
     }
